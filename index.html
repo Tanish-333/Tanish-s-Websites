@@ -31,9 +31,8 @@ h2{font:400 clamp(32px,5vw,64px)/1.05 var(--serif);letter-spacing:-.03em}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,420px),1fr));gap:40px 28px;margin-top:48px}
 .card{background:none;border:0;color:inherit;font:inherit;text-align:left;cursor:pointer;display:block;width:100%}
 .shot{position:relative;aspect-ratio:16/10;overflow:hidden;border:1px solid var(--line);background:#111;transition:border-color .25s}
-.shot iframe{position:absolute;left:0;top:0;width:1440px;height:900px;border:0;transform-origin:0 0;pointer-events:none;background:#fff;filter:grayscale(1);transition:filter .4s}
+.shot iframe{position:absolute;left:0;top:0;width:1440px;height:900px;border:0;transform-origin:0 0;pointer-events:none;background:#fff}
 .card:hover .shot{border-color:#fff}
-.card:hover iframe{filter:none}
 .shot .ph{position:absolute;inset:0;display:grid;place-items:center;padding:20px;text-align:center;font:400 clamp(22px,2.4vw,32px)/1.1 var(--serif);color:#fff;background:#0d0d0d}
 .card h3{font:400 22px var(--serif);margin-top:16px;letter-spacing:-.01em}
 .card p{color:var(--mute);font-size:14px;margin-top:4px}
@@ -121,7 +120,7 @@ footer{padding:24px var(--gut);color:var(--mute);font-size:13px;border-top:1px s
 
 <script>
 /* demo: folder in /demos (embedded). live: real URL (optional).
-   Projects with neither show "Click this link." pointing at live, or the GitHub repo. */
+   Projects with only live show "Click this link." pointing at that URL. */
 const PROJECTS=[
  {t:"Angad Ahluwalia Real Estate",d:"Real estate",demo:"angad"},
  {t:"La Crema Peruvian",d:"Restaurant",demo:"la-crema"},
@@ -130,13 +129,13 @@ const PROJECTS=[
  {t:"The Indian Supermarket",d:"Grocery",demo:"indian-supermarket"},
  {t:"RJ Mowing KW",d:"Lawn care",demo:"rj-mowing"},
  {t:"Soapy Bubbles Laundromat",d:"Laundromat",demo:"soapy"},
- {t:"Community Kitchen Co-op KW",d:"Non-profit",live:"",repo:"kitchencoopkw"},
- {t:"Project 321 Peel",d:"Non-profit",live:"",repo:"project321peel.com"},
- {t:"Hespeler Santa Claus Parade",d:"Community event",live:"",repo:"Hespeler-Santa-Claus-Parade"},
- {t:"Kitchener Comic Book Warehouse",d:"Retail",live:"",repo:"Kitchener-Comic-Book-Warehouse"}
+ {t:"Community Kitchen Co-op KW",d:"Non-profit",live:"https://kitchencoopkw.vercel.app/"},
+ {t:"Project 321 Peel",d:"Non-profit",live:"https://project321peel.vercel.app/"},
+ {t:"Hespeler Santa Claus Parade",d:"Community event",live:"https://hespeler-santa-claus-parade.vercel.app/"},
+ {t:"Kitchener Comic Book Warehouse",d:"Retail",live:"https://kitchener-comic-book-warehouse.vercel.app/"}
 ];
 const embed=p=>p.demo?`demos/${p.demo}/index.html`:"";
-const link=p=>p.live||(p.demo?embed(p):`https://github.com/Tanish-333/${p.repo}`);
+const link=p=>p.live||embed(p);
 const $=s=>document.querySelector(s);
 
 const grid=$("#grid");

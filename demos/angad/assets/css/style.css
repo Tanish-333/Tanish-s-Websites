@@ -1,0 +1,343 @@
+/* ============================================================
+   Angad Ahluwalia Real Estate main stylesheet
+   Table of contents:
+   1. Variables & reset   2. Typography   3. Layout utilities
+   4. Buttons & badges    5. Header/Nav   6. Hero carousel
+   7. Cards               8. Forms        9. Sections
+   10. Footer             11. Animations  12. Responsive
+   ============================================================ */
+
+/* ---------- 1. Variables & reset ---------- */
+:root{
+  --navy:#0f2438;
+  --navy-2:#16324a;
+  --navy-deep:#0a1a29;
+  --ink:#1c222b;
+  --gray-700:#3f4854;
+  --gray-600:#5b6470;
+  --gray-300:#c9cdd3;
+  --gray-200:#e7e2d9;
+  --gray-100:#f2efe9;
+  --cream:#faf7f2;
+  --white:#ffffff;
+  --gold:#c6a15b;
+  --gold-light:#e8d5a9;
+  --gold-dark:#9c7a3c;
+  --success:#3f7d58;
+  --danger:#b3434a;
+
+  --font-serif:'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-sans:'Poppins', 'Segoe UI', Arial, sans-serif;
+  --font-script:'Pinyon Script', cursive;
+
+  --container:1220px;
+  --radius-sm:6px;
+  --radius-md:14px;
+  --radius-lg:28px;
+  --shadow-sm:0 2px 10px rgba(15,36,56,.08);
+  --shadow-md:0 12px 30px rgba(15,36,56,.12);
+  --shadow-lg:0 24px 60px rgba(15,36,56,.18);
+  --transition:.3s cubic-bezier(.4,0,.2,1);
+  --header-h:92px;
+}
+
+*,*::before,*::after{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  font-family:var(--font-sans);
+  color:var(--ink);
+  background:var(--cream);
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block;}
+a{color:inherit;text-decoration:none;}
+ul{list-style:none;margin:0;padding:0;}
+h1,h2,h3,h4{font-family:var(--font-serif);color:var(--navy);margin:0 0 .5em;line-height:1.2;font-weight:600;}
+p{margin:0 0 1em;color:var(--gray-700);}
+button{font-family:inherit;cursor:pointer;}
+input,textarea,select{font-family:inherit;font-size:1rem;}
+:focus-visible{outline:3px solid var(--gold-light);outline-offset:2px;}
+
+/* ---------- 2. Typography ---------- */
+.eyebrow{
+  display:inline-block;
+  font-family:var(--font-sans);
+  font-weight:600;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  font-size:.78rem;
+  color:var(--gold-dark);
+  margin-bottom:.9em;
+}
+h1{font-size:clamp(2.1rem,4.4vw,3.4rem);}
+h2{font-size:clamp(1.7rem,3.2vw,2.5rem);}
+h3{font-size:1.35rem;}
+.script{font-family:var(--font-script);color:var(--gold);font-weight:400;}
+.lead{font-size:1.15rem;color:var(--gray-700);}
+.text-center{text-align:center;}
+.max-w{max-width:640px;}
+.mx-auto{margin-left:auto;margin-right:auto;}
+
+/* ---------- 3. Layout utilities ---------- */
+.container{width:100%;max-width:var(--container);margin:0 auto;padding:0 24px;}
+.section{padding:96px 0;}
+.section-sm{padding:56px 0;}
+.grid{display:grid;gap:32px;}
+.grid-2{grid-template-columns:1fr 1fr;}
+.grid-3{grid-template-columns:repeat(3,1fr);}
+.grid-4{grid-template-columns:repeat(4,1fr);}
+.flex{display:flex;}
+.flex-center{display:flex;align-items:center;justify-content:center;}
+.flex-between{display:flex;align-items:center;justify-content:space-between;}
+.gap-1{gap:12px;}
+.gap-2{gap:24px;}
+.bg-navy{background:var(--navy);color:var(--white);}
+.bg-navy h2, .bg-navy h3{color:var(--white);}
+.bg-white-band{background:var(--white);}
+.divider{width:64px;height:3px;background:var(--gold);border:0;margin:18px 0 28px;}
+.text-center .divider{margin-left:auto;margin-right:auto;}
+
+/* ---------- 4. Buttons & badges ---------- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:.5em;
+  padding:16px 34px;
+  font-weight:600;font-size:.92rem;letter-spacing:.06em;text-transform:uppercase;
+  border-radius:2px;border:2px solid transparent;
+  transition:var(--transition);white-space:nowrap;
+}
+.btn-primary{background:var(--gold);color:var(--navy-deep);}
+.btn-primary:hover{background:var(--gold-dark);color:var(--white);transform:translateY(-2px);}
+.btn-outline{border-color:var(--white);color:var(--white);}
+.btn-outline:hover{background:var(--white);color:var(--navy);}
+.btn-outline-navy{border-color:var(--navy);color:var(--navy);}
+.btn-outline-navy:hover{background:var(--navy);color:var(--white);}
+.btn-block{width:100%;}
+.btn-sm{padding:12px 22px;font-size:.8rem;}
+.badge{
+  display:inline-block;padding:6px 14px;border-radius:999px;
+  background:var(--gold-light);color:var(--gold-dark);
+  font-size:.75rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;
+}
+
+/* ---------- 5. Header / Nav ---------- */
+.site-header{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  height:var(--header-h);
+  display:flex;align-items:center;
+  background:transparent;
+  transition:var(--transition);
+}
+.site-header.is-scrolled,.site-header.is-solid{
+  height:74px;background:rgba(15,36,56,.97);box-shadow:var(--shadow-md);
+  backdrop-filter:blur(6px);
+}
+.site-header .container{display:flex;align-items:center;justify-content:space-between;width:100%;max-width:1380px;}
+.brand{display:flex;align-items:center;gap:12px;color:var(--white);flex-shrink:1;min-width:0;}
+.brand svg,.brand img{height:44px;width:auto;flex-shrink:0;}
+.brand-logo-rah{height:56px;background:var(--white);border-radius:8px;padding:5px 10px;}
+.brand-text{line-height:1.1;min-width:0;overflow:hidden;}
+.brand-name{font-family:var(--font-serif);font-size:1.28rem;font-weight:700;letter-spacing:.02em;color:var(--white);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.brand-tag{font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-light);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+
+.main-nav{display:flex;align-items:center;gap:0;flex-shrink:0;}
+.main-nav a{
+  padding:12px 11px;font-size:.78rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;
+  color:rgba(255,255,255,.88);border-radius:4px;transition:var(--transition);position:relative;white-space:nowrap;
+}
+.main-nav a:hover,.main-nav a.active{color:var(--gold-light);}
+.main-nav a.active::after{
+  content:"";position:absolute;left:16px;right:16px;bottom:6px;height:2px;background:var(--gold);
+}
+.header-right{display:flex;align-items:center;gap:16px;flex-shrink:0;}
+.social-links{display:flex;gap:8px;flex-shrink:0;}
+.social-links a{
+  width:34px;height:34px;border-radius:50%;border:1px solid rgba(255,255,255,.35);
+  display:flex;align-items:center;justify-content:center;color:var(--white);transition:var(--transition);
+}
+.social-links a:hover{background:var(--gold);border-color:var(--gold);color:var(--navy-deep);}
+.social-links svg{width:15px;height:15px;}
+.header-phone{color:var(--white);font-weight:600;font-size:.88rem;display:flex;align-items:center;gap:8px;white-space:nowrap;flex-shrink:0;}
+.header-phone svg{width:16px;height:16px;color:var(--gold);}
+
+.nav-toggle{
+  display:none;flex-direction:column;gap:5px;background:none;border:0;padding:8px;z-index:1100;
+}
+.nav-toggle span{width:26px;height:2px;background:var(--white);transition:var(--transition);}
+.nav-toggle.is-open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.nav-toggle.is-open span:nth-child(2){opacity:0;}
+.nav-toggle.is-open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+/* ---------- 6. Hero carousel ---------- */
+.hero{position:relative;height:100vh;min-height:600px;max-height:980px;overflow:hidden;color:var(--white);}
+.hero-slides{position:absolute;inset:0;}
+.hero-slide{
+  position:absolute;inset:0;opacity:0;transition:opacity 1.4s ease;
+  background-size:cover;background-position:center;
+}
+.hero-slide.is-active{opacity:1;}
+.hero-slide.is-active .hero-slide-bg{animation:kenburns 9s ease-in-out forwards;}
+.hero-slide-bg{position:absolute;inset:-4%;background-size:cover;background-position:center;}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,26,41,.55) 0%,rgba(10,26,41,.4) 45%,rgba(10,26,41,.78) 100%);}
+.hero-watermark{
+  position:absolute;bottom:6%;right:4%;font-family:var(--font-script);font-size:clamp(3rem,10vw,8rem);
+  color:rgba(255,255,255,.12);pointer-events:none;line-height:1;
+}
+.hero-content{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 20px;}
+.hero-brokerage-logo{height:88px;width:auto;background:var(--white);border-radius:12px;padding:12px 20px;margin-bottom:22px;}
+.hero-eyebrow{max-width:100%;letter-spacing:.35em;text-transform:uppercase;font-size:.85rem;color:var(--gold-light);margin-bottom:18px;font-weight:600;}
+.hero-title{max-width:100%;font-family:var(--font-serif);font-size:clamp(2.6rem,6.5vw,5rem);margin:0;color:var(--white);text-shadow:0 4px 30px rgba(0,0,0,.35);}
+.hero-subtitle{max-width:100%;font-size:clamp(1.05rem,2vw,1.5rem);color:var(--gold-light);margin:10px 0 36px;font-weight:300;letter-spacing:.04em;}
+.hero-cta{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;}
+.hero-dots{position:absolute;bottom:34px;left:50%;transform:translateX(-50%);display:flex;gap:10px;z-index:3;}
+.hero-dots button{width:10px;height:10px;border-radius:50%;border:1px solid rgba(255,255,255,.7);background:transparent;padding:0;}
+.hero-dots button.is-active{background:var(--gold);border-color:var(--gold);}
+.hero-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:3;width:48px;height:48px;border-radius:50%;
+  border:1px solid rgba(255,255,255,.5);background:rgba(15,36,56,.25);color:var(--white);display:flex;align-items:center;justify-content:center;transition:var(--transition);}
+.hero-arrow:hover{background:var(--gold);border-color:var(--gold);color:var(--navy-deep);}
+.hero-arrow.prev{left:24px;}
+.hero-arrow.next{right:24px;}
+.hero-scroll{position:absolute;bottom:34px;right:40px;z-index:3;display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--white);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;}
+.hero-scroll svg{width:18px;height:18px;animation:bob 2s infinite;}
+
+/* page banner (interior pages) */
+.page-banner{position:relative;height:46vh;min-height:340px;overflow:hidden;display:flex;align-items:center;justify-content:center;text-align:center;color:var(--white);}
+.page-banner::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,26,41,.72),rgba(10,26,41,.55));}
+.page-banner .container{position:relative;z-index:2;}
+.page-banner .hero-dots{bottom:18px;}
+.breadcrumb{font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold-light);margin-top:14px;}
+.breadcrumb a{opacity:.85;}
+.breadcrumb a:hover{color:var(--gold);}
+
+/* ---------- 7. Cards ---------- */
+.card{background:var(--white);border-radius:var(--radius-md);box-shadow:var(--shadow-sm);transition:var(--transition);}
+.card:hover{box-shadow:var(--shadow-md);transform:translateY(-4px);}
+.service-card{padding:40px 30px;text-align:center;border-top:3px solid transparent;}
+.service-card:hover{border-top-color:var(--gold);}
+.service-icon{width:64px;height:64px;margin:0 auto 22px;border-radius:50%;background:var(--navy);display:flex;align-items:center;justify-content:center;color:var(--gold);}
+.service-icon svg{width:28px;height:28px;}
+.step{display:flex;gap:22px;padding:26px 0;border-bottom:1px solid var(--gray-200);}
+.step:last-child{border-bottom:0;}
+.step-num{font-family:var(--font-serif);font-size:2rem;color:var(--gold);flex-shrink:0;width:56px;}
+.team-photo{width:100%;aspect-ratio:4/5;border-radius:var(--radius-md);object-fit:cover;background:linear-gradient(135deg,var(--navy),var(--navy-2));}
+.agent-medallion{width:260px;height:260px;border-radius:50%;object-fit:cover;display:block;margin:0 auto;border:8px solid var(--white);box-shadow:0 0 0 2px var(--gold),var(--shadow-lg);}
+.agent-medallion-lg{width:320px;height:320px;}
+
+/* ---------- 8. Forms ---------- */
+.form-card{background:var(--white);border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);padding:44px;}
+.form-card h3{margin-bottom:6px;}
+.form-card .lead{margin-bottom:26px;font-size:.95rem;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+.form-group{margin-bottom:16px;}
+.form-group label{display:block;font-size:.78rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--gray-700);margin-bottom:7px;}
+.form-group input,.form-group textarea,.form-group select{
+  width:100%;padding:14px 16px;border:1px solid var(--gray-200);border-radius:var(--radius-sm);
+  background:var(--gray-100);transition:var(--transition);color:var(--ink);
+}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{
+  border-color:var(--gold);background:var(--white);outline:0;box-shadow:0 0 0 4px rgba(198,161,91,.18);
+}
+.form-group textarea{resize:vertical;min-height:110px;}
+.form-status{margin-top:14px;font-size:.9rem;font-weight:600;display:none;padding:12px 16px;border-radius:var(--radius-sm);}
+.form-status.is-visible{display:block;}
+.form-status.is-success{background:#e7f3ec;color:var(--success);}
+.form-status.is-error{background:#f7e6e7;color:var(--danger);}
+.hp-field{position:absolute;left:-9999px;top:-9999px;opacity:0;height:0;width:0;}
+
+/* ---------- 9. Sections ---------- */
+.welcome-section .grid-2{align-items:flex-start;gap:60px;}
+.neighbours-link{display:inline-flex;align-items:center;gap:8px;margin-top:22px;font-style:italic;color:var(--gold-dark);font-weight:600;border-bottom:1px solid var(--gold);padding-bottom:2px;}
+.neighbours-link:hover{color:var(--gold);}
+.cta-band{position:relative;background:linear-gradient(135deg,var(--navy-deep),var(--navy-2));color:var(--white);padding:90px 0;text-align:center;overflow:hidden;}
+.cta-band::before{content:"";position:absolute;inset:0;opacity:.12;background:radial-gradient(circle at 20% 20%,var(--gold) 0,transparent 40%),radial-gradient(circle at 80% 80%,var(--gold) 0,transparent 40%);}
+.cta-band .container{position:relative;z-index:1;}
+.faq-item{border-bottom:1px solid var(--gray-200);padding:22px 0;}
+.faq-question{display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-weight:600;color:var(--navy);font-family:var(--font-serif);font-size:1.1rem;}
+.faq-question svg{width:18px;height:18px;flex-shrink:0;transition:transform var(--transition);color:var(--gold);}
+.faq-item.is-open .faq-question svg{transform:rotate(45deg);}
+.faq-answer{max-height:0;overflow:hidden;transition:max-height .35s ease;}
+.faq-answer p{padding-top:14px;}
+.calc-card{background:var(--white);border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);padding:44px;}
+.calc-result{background:var(--navy);color:var(--white);border-radius:var(--radius-md);padding:30px;text-align:center;margin-top:10px;}
+.calc-result .amount{font-family:var(--font-serif);font-size:2.4rem;color:var(--gold-light);}
+.calc-result .amount-label{font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gray-300);}
+.range-row{display:flex;justify-content:space-between;font-size:.85rem;color:var(--gray-600);margin-top:4px;}
+.map-embed{border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-md);}
+.map-embed iframe{width:100%;height:420px;border:0;display:block;}
+.brokerage-logo-inline{height:72px;width:auto;margin-bottom:16px;}
+.office-info-item{display:flex;gap:16px;align-items:flex-start;margin-bottom:26px;}
+.office-info-item svg{width:22px;height:22px;color:var(--gold);flex-shrink:0;margin-top:2px;}
+.office-info-item h4{margin-bottom:2px;font-size:1rem;}
+
+/* back to top */
+.back-to-top{position:fixed;bottom:26px;right:26px;width:48px;height:48px;border-radius:50%;background:var(--navy);color:var(--gold);border:0;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow-md);opacity:0;visibility:hidden;transform:translateY(10px);transition:var(--transition);z-index:900;}
+.back-to-top.is-visible{opacity:1;visibility:visible;transform:none;}
+.back-to-top svg{width:18px;height:18px;}
+
+/* video modal */
+.video-modal{position:fixed;inset:0;background:rgba(10,20,30,.92);z-index:2000;display:none;align-items:center;justify-content:center;padding:20px;}
+.video-modal.is-open{display:flex;}
+.video-modal-inner{width:100%;max-width:960px;aspect-ratio:16/9;position:relative;}
+.video-modal-inner iframe{width:100%;height:100%;border:0;border-radius:8px;}
+.video-modal-close{position:absolute;top:-46px;right:0;color:var(--white);background:none;border:0;font-size:1rem;letter-spacing:.1em;text-transform:uppercase;}
+
+/* reveal on scroll */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease;}
+.reveal.is-visible{opacity:1;transform:none;}
+
+/* ---------- 10. Footer ---------- */
+.site-footer{background:var(--navy-deep);color:var(--gray-300);padding-top:80px;}
+.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:40px;padding-bottom:60px;border-bottom:1px solid rgba(255,255,255,.1);}
+.footer-brand .brand-name{color:var(--white);}
+.footer-about{font-size:.9rem;margin:18px 0 22px;color:var(--gray-300);}
+.footer-brokerage-logo{height:80px;width:auto;background:var(--white);border-radius:10px;padding:10px 16px;display:block;}
+.footer-social{display:flex;gap:10px;}
+.footer-col h4{color:var(--white);font-family:var(--font-sans);font-size:.85rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:20px;}
+.footer-col ul li{margin-bottom:12px;}
+.footer-col a{font-size:.92rem;color:var(--gray-300);transition:var(--transition);}
+.footer-col a:hover{color:var(--gold);}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;padding:26px 0;font-size:.8rem;color:var(--gray-600);flex-wrap:wrap;gap:10px;}
+.footer-bottom a{color:var(--gray-600);}
+.footer-bottom a:hover{color:var(--gold);}
+
+/* ---------- 11. Animations ---------- */
+@keyframes kenburns{from{transform:scale(1);}to{transform:scale(1.12);}}
+@keyframes bob{0%,100%{transform:translateY(0);}50%{transform:translateY(6px);}}
+
+/* ---------- 12. Responsive ---------- */
+@media (max-width:1080px){
+  .main-nav,.header-phone{display:none;}
+  .nav-toggle{display:flex;}
+  .footer-grid{grid-template-columns:1fr 1fr;}
+}
+@media (max-width:1080px){
+  .main-nav.is-open{
+    display:flex;position:fixed;inset:0 0 0 auto;width:min(320px,80vw);height:100vh;
+    background:var(--navy-deep);flex-direction:column;align-items:flex-start;padding:110px 30px 30px;gap:4px;box-shadow:var(--shadow-lg);
+  }
+  .main-nav.is-open a{width:100%;padding:14px 6px;border-bottom:1px solid rgba(255,255,255,.08);}
+}
+@media (max-width:900px){
+  .grid-2{grid-template-columns:1fr;}
+  .grid-3{grid-template-columns:1fr 1fr;}
+  .grid-4{grid-template-columns:1fr 1fr;}
+  .footer-grid{grid-template-columns:1fr;gap:34px;}
+}
+@media (max-width:640px){
+  .section{padding:64px 0;}
+  .grid-3,.grid-4{grid-template-columns:1fr;}
+  .form-row{grid-template-columns:1fr;}
+  .form-card,.calc-card{padding:28px;}
+  .hero-arrow{display:none;}
+  .footer-bottom{flex-direction:column;text-align:center;}
+  .hero-scroll{display:none;}
+  .brand-tag{display:none;}
+  .brand-name{font-size:1.05rem;}
+  .brand-text{max-width:150px;}
+  .brand-logo-rah{height:44px;padding:4px 8px;}
+  .header-right{gap:10px;}
+  .hero-eyebrow{letter-spacing:.18em;font-size:.72rem;}
+  .hero-brokerage-logo{height:48px;padding:8px 12px;}
+}

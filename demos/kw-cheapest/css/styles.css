@@ -1,0 +1,378 @@
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: #050506;
+}
+
+.font-display {
+  font-family: 'Orbitron', 'Inter', sans-serif;
+}
+
+.font-mono {
+  font-family: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+}
+
+/* ---------------------------------------------------------------------
+   Cosmic backdrop: nebula wash + film grain + vignette + scanlines.
+   Layered fixed panels behind all content (z-index 0-1), with the
+   starfield canvas from js/starfield.js painted between the nebula
+   and the grain/scanline layers.
+   ------------------------------------------------------------------ */
+.cosmic-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 55% 40% at 18% 12%, rgba(255, 255, 255, 0.06), transparent 60%),
+    radial-gradient(ellipse 60% 45% at 50% 100%, rgba(255, 255, 255, 0.03), transparent 70%),
+    #050505;
+}
+
+.grain-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  background-size: 140px 140px;
+}
+
+.scanlines {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.4;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.025) 0px,
+    rgba(255, 255, 255, 0.025) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+}
+
+.vignette {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: radial-gradient(ellipse 85% 75% at 50% 35%, transparent 55%, rgba(0, 0, 0, 0.6) 100%);
+}
+
+#starfield-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  display: block;
+}
+
+/* Concentric orbit rings used as quiet hero decoration instead of blur blobs */
+.orbit-field {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.orbit-field span {
+  position: absolute;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 50%;
+}
+.orbit-field span:nth-child(1) { width: 320px; height: 320px; }
+.orbit-field span:nth-child(2) { width: 520px; height: 520px; border-color: rgba(255, 255, 255, 0.08); }
+.orbit-field span:nth-child(3) { width: 760px; height: 760px; border-color: rgba(255, 255, 255, 0.06); }
+
+/* Small rotating dashed ring behind the wordmark icon */
+.orbit-ring {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 1px dashed rgba(255, 255, 255, 0.5);
+  animation: orbit-spin 14s linear infinite;
+}
+@keyframes orbit-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .orbit-ring { animation: none; }
+}
+
+/* Tick-mark rule, used as a quiet divider instead of a plain border line.
+   Defaults to neutral zinc; pass --hud-color inline to tint it. */
+.hud-rule {
+  height: 1px;
+  --tick-color: var(--hud-color, #52525b);
+  background-image: repeating-linear-gradient(
+    to right,
+    var(--tick-color) 0,
+    var(--tick-color) 1px,
+    transparent 1px,
+    transparent 10px
+  );
+  opacity: 0.7;
+}
+
+/* HUD corner-bracket panel: four corner marks drawn with two pseudo-elements */
+.hud-panel {
+  position: relative;
+}
+.hud-panel::before,
+.hud-panel::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-size: 12px 12px;
+  opacity: 0.5;
+  transition: opacity 0.2s;
+}
+.hud-panel::before {
+  background-image:
+    linear-gradient(to right, var(--hud-color, currentColor) 2px, transparent 2px),
+    linear-gradient(to bottom, var(--hud-color, currentColor) 2px, transparent 2px),
+    linear-gradient(to left, var(--hud-color, currentColor) 2px, transparent 2px),
+    linear-gradient(to bottom, var(--hud-color, currentColor) 2px, transparent 2px);
+  background-position: top left, top left, top right, top right;
+}
+.hud-panel::after {
+  background-image:
+    linear-gradient(to right, var(--hud-color, currentColor) 2px, transparent 2px),
+    linear-gradient(to top, var(--hud-color, currentColor) 2px, transparent 2px),
+    linear-gradient(to left, var(--hud-color, currentColor) 2px, transparent 2px),
+    linear-gradient(to top, var(--hud-color, currentColor) 2px, transparent 2px);
+  background-position: bottom left, bottom left, bottom right, bottom right;
+}
+.hud-panel:hover::before,
+.hud-panel:hover::after {
+  opacity: 1;
+}
+
+/* Sold-out ribbon across the product image */
+.sold-out-ribbon {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.55);
+  pointer-events: none;
+}
+.sold-out-ribbon span {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  transform: rotate(-8deg);
+  background: linear-gradient(135deg, #3f3f46, #09090b);
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  font-size: 0.8rem;
+  padding: 0.35rem 1.25rem;
+  border-radius: 0.2rem;
+  box-shadow: 0 0 18px rgba(0, 0, 0, 0.6);
+}
+
+/* Category chip / control scroll row without visible scrollbar clutter */
+.chip-row::-webkit-scrollbar {
+  height: 6px;
+}
+.chip-row::-webkit-scrollbar-thumb {
+  background: #3f3f46;
+  border-radius: 10px;
+}
+
+/* Modal fade/scale in */
+.modal-panel {
+  animation: modal-in 0.18s ease-out;
+}
+@keyframes modal-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Card entrance */
+.card-in {
+  animation: card-in 0.25s ease-out both;
+}
+@keyframes card-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Shake for login errors */
+.shake {
+  animation: shake 0.4s;
+}
+@keyframes shake {
+  10%, 90% { transform: translateX(-1px); }
+  20%, 80% { transform: translateX(2px); }
+  30%, 50%, 70% { transform: translateX(-4px); }
+  40%, 60% { transform: translateX(4px); }
+}
+
+/* Toast */
+.toast {
+  animation: toast-in 0.2s ease-out, toast-out 0.2s ease-in 2.3s forwards;
+}
+@keyframes toast-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes toast-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Product card lift + glow on hover, plus a slow image zoom so the card
+   feels alive rather than a static template tile. */
+.deal-card {
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+.deal-card:hover {
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 12px 28px -10px rgba(0, 0, 0, 0.5);
+  transform: translateY(-2px);
+}
+.deal-card img {
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.deal-card:hover img {
+  transform: scale(1.045);
+}
+
+/* Deliberate, visible focus rings for keyboard navigation on links and
+   buttons, instead of leaving it to each browser's default (or
+   accidentally suppressing it, which reads as unfinished). Form fields
+   are excluded here since they already carry their own focus:ring
+   treatment inline, and stacking both would just look doubled. */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Tactile press feedback on every button, not just a hover color swap. */
+button:active {
+  transform: scale(0.97);
+}
+
+::selection {
+  background: rgba(255, 255, 255, 0.25);
+}
+.light-theme ::selection {
+  background: rgba(0, 0, 0, 0.15);
+}
+
+/* ---------------------------------------------------------------------
+   Light theme. Toggled via a `light-theme` class on <html> (js/theme.js),
+   persisted to localStorage. Overrides the specific zinc/black utility
+   classes actually used across the site rather than rewriting markup;
+   each override has higher specificity than the plain Tailwind class it
+   targets, so no !important is needed.
+
+   The starfield/nebula/grain/scanline backdrop is a dark-only aesthetic
+   (white stars and a black vignette make no sense on a white page), so
+   it's hidden in light mode rather than inverted. The HUD corner
+   brackets and orbit rings stay, since they're just colored line accents
+   that work fine on either background.
+   ------------------------------------------------------------------ */
+.light-theme body {
+  background-color: #fafafa;
+}
+
+.light-theme .cosmic-backdrop,
+.light-theme .grain-overlay,
+.light-theme .scanlines,
+.light-theme .vignette,
+.light-theme #starfield-canvas {
+  display: none;
+}
+
+.light-theme .orbit-field span {
+  border-color: rgba(0, 0, 0, 0.1);
+}
+.light-theme .orbit-field span:nth-child(2) {
+  border-color: rgba(0, 0, 0, 0.06);
+}
+.light-theme .orbit-field span:nth-child(3) {
+  border-color: rgba(0, 0, 0, 0.05);
+}
+.light-theme .orbit-ring {
+  border-color: rgba(0, 0, 0, 0.35);
+}
+
+/* Backgrounds */
+.light-theme .bg-zinc-950 { background-color: #fafafa; }
+.light-theme .bg-zinc-950\/85 { background-color: rgba(250, 250, 250, 0.85); }
+.light-theme .bg-zinc-900 { background-color: #ffffff; }
+.light-theme .bg-zinc-900\/60 { background-color: rgba(255, 255, 255, 0.75); }
+.light-theme .bg-zinc-900\/80 { background-color: rgba(255, 255, 255, 0.85); }
+.light-theme .bg-zinc-800 { background-color: #e4e4e7; }
+.light-theme .bg-zinc-700 { background-color: #d4d4d8; }
+
+/* Borders */
+.light-theme .border-zinc-800 { border-color: #e4e4e7; }
+.light-theme .border-zinc-800\/60 { border-color: rgba(228, 228, 231, 0.9); }
+.light-theme .border-zinc-700 { border-color: #d4d4d8; }
+
+/* Text */
+.light-theme .text-zinc-50 { color: #18181b; }
+.light-theme .text-zinc-100 { color: #27272a; }
+.light-theme .text-zinc-200 { color: #3f3f46; }
+.light-theme .text-zinc-300 { color: #52525b; }
+.light-theme .text-zinc-400 { color: #71717a; }
+.light-theme .text-zinc-500 { color: #71717a; }
+.light-theme .placeholder\:text-zinc-500::placeholder { color: #a1a1aa; }
+
+/* Category chip stays a fixed dark overlay in both themes (it sits on top
+   of product photos), so its text needs to stay light even though the
+   plain .text-zinc-300 rule above darkens it for light-theme surfaces. */
+.light-theme .bg-black\/70.text-zinc-300 { color: #e4e4e7; }
+
+/* Sold-out grayscale images read muddy on white; lighten the dim overlay */
+.light-theme .sold-out-ribbon {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+/* Inverted "pop" elements: pure white-on-black in dark theme, flipped to
+   pure black-on-white in light theme so they still read as inverted. */
+.light-theme .bg-white { background-color: #18181b; }
+.light-theme .text-zinc-950 { color: #fafafa; }
+.light-theme .border-white { border-color: #18181b; }
+.light-theme .hover\:bg-zinc-200:hover { background-color: #27272a; }
+
+.light-theme .deal-card:hover {
+  border-color: rgba(0, 0, 0, 0.25);
+  box-shadow: 0 12px 28px -10px rgba(0, 0, 0, 0.15);
+}

@@ -1,0 +1,26 @@
+@import "tailwindcss";
+
+@theme {
+  /* Neutral grayscale accent — no hue, matches the zinc scale used
+     everywhere else so "brand" and "zinc" read as one unified palette. */
+  --color-brand-50: #fafafa;
+  --color-brand-100: #f4f4f5;
+  --color-brand-200: #e4e4e7;
+  --color-brand-300: #d4d4d8;
+  --color-brand-400: #a1a1aa;
+  --color-brand-500: #71717a;
+  --color-brand-600: #52525b;
+  --color-brand-700: #3f3f46;
+  --color-brand-800: #27272a;
+  --color-brand-900: #18181b;
+
+  --font-display: "Orbitron", "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", monospace;
+}
+
+@source "../index.html";
+@source "../admin/index.html";
+@source "../admin/admin.js";
+@source "../terms/index.html";
+@source "../privacy/index.html";
+@source "../js/main.js";

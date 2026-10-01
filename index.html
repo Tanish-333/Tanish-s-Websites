@@ -7,103 +7,154 @@
 <meta name="google-site-verification" content="kVEPdbuHe8bJpF_vt13v1-6EFAukFftT8vDQSk6n644" />
 <meta name="description" content="Freelance web developer in Kitchener–Waterloo building fast, clean websites for local businesses and non-profits.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23000'/%3E%3Cpath d='M8 9h16M16 9v15' stroke='%23fff' stroke-width='3.5'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#000;--ink:#fff;--mute:#8a8a8a;--line:#262626;--gut:clamp(20px,5vw,72px);--serif:Georgia,'Times New Roman',serif;--sans:system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif}
+:root{--bg:#050505;--ink:#fafafa;--mute:#8f8f8f;--dim:#5a5a5a;--line:#222;--gut:clamp(20px,5vw,80px);
+--serif:'Instrument Serif',Georgia,'Times New Roman',serif;--sans:'Inter',system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;--max:1320px}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-weight:400;line-height:1.6;-webkit-font-smoothing:antialiased}
 a{color:inherit}
 ::selection{background:#fff;color:#000}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--gut)}
 
-nav{display:flex;justify-content:space-between;align-items:center;padding:24px var(--gut)}
-.logo{font:400 20px var(--serif);text-decoration:none}
-nav ul{display:flex;gap:28px;list-style:none;font-size:14px}
-nav ul a{text-decoration:none;color:var(--mute);transition:color .2s}
+/* nav */
+nav{position:sticky;top:0;z-index:20;background:rgba(5,5,5,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid transparent;transition:border-color .3s}
+nav.scrolled{border-bottom-color:var(--line)}
+nav .wrap{display:flex;justify-content:space-between;align-items:center;height:68px}
+.logo{font:400 26px var(--serif);text-decoration:none;letter-spacing:-.01em}
+nav ul{display:flex;gap:6px;list-style:none;font-size:14px;align-items:center}
+nav ul a{text-decoration:none;color:var(--mute);padding:8px 14px;border-radius:99px;transition:.2s}
 nav ul a:hover{color:var(--ink)}
+nav ul li:last-child a{background:var(--ink);color:#000;font-weight:500}
+nav ul li:last-child a:hover{background:#d8d8d8}
+@media(max-width:600px){nav ul li:not(:last-child){display:none}}
 
-section{padding:clamp(64px,10vw,140px) var(--gut)}
-.label{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin-bottom:20px}
-h1{font:400 clamp(44px,9vw,132px)/1 var(--serif);letter-spacing:-.04em;max-width:13ch}
-h2{font:400 clamp(32px,5vw,64px)/1.05 var(--serif);letter-spacing:-.03em}
-.hero{padding-top:clamp(60px,12vw,160px)}
-.hero p{margin-top:32px;max-width:48ch;color:var(--mute);font-size:clamp(16px,1.4vw,20px)}
+/* hero */
+.hero{position:relative;overflow:hidden;padding:clamp(80px,14vw,200px) 0 clamp(70px,10vw,140px)}
+.hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:80px 80px;opacity:.35;-webkit-mask-image:radial-gradient(ellipse 70% 70% at 50% 35%,#000,transparent);mask-image:radial-gradient(ellipse 70% 70% at 50% 35%,#000,transparent)}
+.hero .wrap{position:relative}
+.pill{display:inline-flex;align-items:center;gap:10px;font-size:13px;color:var(--mute);border:1px solid var(--line);padding:7px 16px 7px 12px;border-radius:99px;margin-bottom:36px;background:rgba(255,255,255,.02)}
+.pill i{width:7px;height:7px;border-radius:50%;background:#fff;box-shadow:0 0 0 0 rgba(255,255,255,.6);animation:pulse 2.2s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 9px rgba(255,255,255,0)}100%{box-shadow:0 0 0 0 rgba(255,255,255,0)}}
+h1{font:400 clamp(52px,10.5vw,156px)/.95 var(--serif);letter-spacing:-.035em;max-width:12ch}
+h1 em{font-style:italic;color:var(--mute)}
+.hero p{margin-top:36px;max-width:50ch;color:var(--mute);font-size:clamp(16px,1.35vw,19px)}
+.cta{display:flex;gap:12px;margin-top:40px;flex-wrap:wrap}
+.btn{display:inline-block;text-decoration:none;font-size:14px;font-weight:500;padding:14px 26px;border-radius:99px;border:1px solid var(--line);transition:.25s}
+.btn.fill{background:var(--ink);color:#000;border-color:var(--ink)}
+.btn.fill:hover{background:#cfcfcf;border-color:#cfcfcf}
+.btn:not(.fill):hover{border-color:var(--ink)}
+
+section{padding:clamp(70px,10vw,140px) 0}
+.label{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);margin-bottom:18px;display:flex;align-items:center;gap:12px}
+.label::before{content:"";width:28px;height:1px;background:var(--dim)}
+h2{font:400 clamp(36px,5.5vw,76px)/1 var(--serif);letter-spacing:-.03em}
+h2 em{font-style:italic;color:var(--mute)}
+.sub{color:var(--mute);margin-top:16px;max-width:46ch}
 
 /* work */
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,420px),1fr));gap:40px 28px;margin-top:48px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:56px 32px;margin-top:64px}
 .card{background:none;border:0;color:inherit;font:inherit;text-align:left;cursor:pointer;display:block;width:100%}
-.shot{position:relative;aspect-ratio:16/10;overflow:hidden;border:1px solid var(--line);background:#111;transition:border-color .25s}
+.card.big{grid-column:1/-1}
+.win{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#0c0c0c;transition:transform .5s cubic-bezier(.2,.8,.2,1),border-color .3s,box-shadow .5s}
+.card:hover .win{transform:translateY(-6px);border-color:#555;box-shadow:0 30px 70px -20px rgba(255,255,255,.08)}
+.bar{display:flex;gap:6px;align-items:center;padding:10px 14px;border-bottom:1px solid var(--line);background:#0a0a0a}
+.bar i{width:9px;height:9px;border-radius:50%;background:#2a2a2a}
+.bar span{margin-left:10px;font-size:11px;color:var(--dim);overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.shot{position:relative;aspect-ratio:16/10;overflow:hidden;background:#111}
 .shot iframe{position:absolute;left:0;top:0;width:1440px;height:900px;border:0;transform-origin:0 0;pointer-events:none;background:#fff}
-.card:hover .shot{border-color:#fff}
-.shot .ph{position:absolute;inset:0;display:grid;place-items:center;padding:20px;text-align:center;font:400 clamp(22px,2.4vw,32px)/1.1 var(--serif);color:#fff;background:#0d0d0d}
-.card h3{font:400 22px var(--serif);margin-top:16px;letter-spacing:-.01em}
-.card p{color:var(--mute);font-size:14px;margin-top:4px}
+.shot .ph{position:absolute;inset:0;display:grid;place-items:center;padding:24px;text-align:center;font:400 clamp(26px,3vw,44px)/1.05 var(--serif);color:#fff;background:radial-gradient(circle at 30% 20%,#222,#080808)}
+.shot .ph small{display:block;font:400 13px var(--sans);color:var(--mute);margin-top:12px;letter-spacing:.04em}
+.info{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin-top:20px}
+.info h3{font:400 clamp(24px,2.4vw,34px)/1.1 var(--serif);letter-spacing:-.015em}
+.info p{color:var(--mute);font-size:14px;margin-top:2px}
+.num{font-size:12px;color:var(--dim);font-variant-numeric:tabular-nums;white-space:nowrap}
+.arrow{display:inline-block;transition:transform .3s}
+.card:hover .arrow{transform:translate(4px,-4px)}
+@media(max-width:800px){.grid{grid-template-columns:1fr;gap:44px}}
 
 /* services */
-.svc{margin-top:40px;border-top:1px solid var(--line)}
-.svc div{display:flex;justify-content:space-between;gap:24px;padding:22px 0;border-bottom:1px solid var(--line)}
-.svc h3{font:400 clamp(20px,2.4vw,30px) var(--serif)}
-.svc p{color:var(--mute);max-width:42ch;text-align:right}
-@media(max-width:700px){.svc div{flex-direction:column;gap:6px}.svc p{text-align:left}}
+.svc{margin-top:56px;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.svc div{background:var(--bg);padding:32px 26px 38px;transition:background .3s}
+.svc div:hover{background:#0e0e0e}
+.svc b{display:block;font:400 14px var(--sans);color:var(--dim);margin-bottom:56px}
+.svc h3{font:400 26px/1.1 var(--serif);margin-bottom:10px}
+.svc p{color:var(--mute);font-size:14px}
+@media(max-width:900px){.svc{grid-template-columns:1fr 1fr}}@media(max-width:520px){.svc{grid-template-columns:1fr}}
 
 /* contact */
-.contact{border-top:1px solid var(--line)}
-.mail{display:inline-block;margin-top:28px;font:400 clamp(22px,4.4vw,56px) var(--serif);letter-spacing:-.02em;text-decoration:none;border-bottom:1px solid #fff;padding-bottom:4px}
-.mail:hover{color:var(--mute);border-color:var(--mute)}
-footer{padding:24px var(--gut);color:var(--mute);font-size:13px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.contact{text-align:center;border-top:1px solid var(--line);position:relative;overflow:hidden}
+.contact::before{content:"";position:absolute;left:50%;top:0;width:900px;height:500px;transform:translateX(-50%);background:radial-gradient(ellipse at top,rgba(255,255,255,.08),transparent 65%);pointer-events:none}
+.contact .wrap{position:relative}
+.contact .label{justify-content:center}.contact .label::before{display:none}
+.contact h2{max-width:14ch;margin:0 auto}
+.mail{display:inline-block;margin-top:40px;font:400 clamp(24px,4.6vw,60px) var(--serif);letter-spacing:-.02em;text-decoration:none;border-bottom:1px solid #666;padding-bottom:6px;transition:.25s}
+.mail:hover{border-color:#fff}
+footer{border-top:1px solid var(--line);padding:26px 0;color:var(--dim);font-size:13px}
+footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+footer a{text-decoration:none}footer a:hover{color:var(--ink)}
+
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .9s,transform .9s cubic-bezier(.2,.8,.2,1)}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.pill i{animation:none}}
 
 /* viewer */
-.viewer{position:fixed;inset:0;z-index:50;background:#000;display:none;flex-direction:column}
+.viewer{position:fixed;inset:0;z-index:50;background:rgba(5,5,5,.97);display:none;flex-direction:column}
 .viewer.open{display:flex}
 .v-top{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px var(--gut);border-bottom:1px solid var(--line);flex-wrap:wrap}
-.v-top h3{font:400 20px var(--serif)}
-.v-ctrl{display:flex;gap:8px}
-.v-ctrl button,.v-ctrl a{font:inherit;font-size:13px;padding:8px 16px;border:1px solid var(--line);background:none;color:var(--ink);text-decoration:none;cursor:pointer}
-.v-ctrl button:hover,.v-ctrl a:hover,.v-ctrl button.on{background:#fff;color:#000}
-.v-stage{flex:1;min-height:0;padding:20px;display:grid;place-items:center}
-.frame{width:100%;max-width:1400px;height:100%;border:1px solid var(--line);background:#fff;transition:max-width .4s}
-.frame.mobile{max-width:390px}
+.v-top h3{font:400 24px var(--serif)}
+.v-ctrl{display:flex;gap:8px;align-items:center}
+.v-ctrl button,.v-ctrl a{font:500 13px var(--sans);padding:9px 18px;border:1px solid var(--line);border-radius:99px;background:none;color:var(--ink);text-decoration:none;cursor:pointer;transition:.2s}
+.v-ctrl button:hover,.v-ctrl a:hover,.v-ctrl button.on{background:#fff;color:#000;border-color:#fff}
+.v-stage{flex:1;min-height:0;padding:20px var(--gut) 28px;display:grid;place-items:center}
+.frame{width:100%;max-width:1400px;height:100%;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff;transition:max-width .5s cubic-bezier(.2,.8,.2,1);box-shadow:0 40px 100px rgba(0,0,0,.8)}
+.frame.mobile{max-width:390px;border-radius:28px}
 .frame iframe{width:100%;height:100%;border:0}
-.nolive{display:none;text-align:center;font:400 clamp(28px,4vw,48px) var(--serif)}
-.nolive a{border-bottom:1px solid #fff;text-decoration:none}
-.nolive a:hover{color:var(--mute);border-color:var(--mute)}
+.nolive{display:none;text-align:center;font:400 clamp(32px,4.5vw,60px) var(--serif)}
+.nolive a{border-bottom:1px solid #666;text-decoration:none;transition:.2s}
+.nolive a:hover{border-color:#fff}
 </style>
 </head>
 <body>
 
-<nav>
+<nav id="nav"><div class="wrap">
   <a href="#top" class="logo">Tanish</a>
   <ul><li><a href="#work">Work</a></li><li><a href="#services">Services</a></li><li><a href="#contact">Contact</a></li></ul>
-</nav>
+</div></nav>
 
-<section class="hero" id="top">
-  <div class="label">Freelance web developer · Kitchener–Waterloo</div>
-  <h1>Clean, fast websites for local business.</h1>
-  <p>I design and build the whole site — look, code, booking forms and admin tools — for restaurants, shops, services and non-profits.</p>
-</section>
+<header class="hero" id="top"><div class="wrap">
+  <div class="pill"><i></i>Freelance web developer · Kitchener–Waterloo</div>
+  <h1>Clean, fast websites for <em>local</em> business.</h1>
+  <p>I design and build the whole site — the look, the code, booking forms and admin tools — for restaurants, shops, services and non-profits.</p>
+  <div class="cta"><a class="btn fill" href="#work">See my work</a><a class="btn" href="#contact">Get in touch</a></div>
+</div></header>
 
-<section id="work">
-  <div class="label">Selected work</div>
-  <h2>Click any site to open it.</h2>
+<section id="work"><div class="wrap">
+  <div class="reveal"><div class="label">Selected work</div>
+  <h2>Sites I've <em>built.</em></h2>
+  <p class="sub">Click any project to open it.</p></div>
   <div class="grid" id="grid"></div>
-</section>
+</div></section>
 
-<section id="services">
-  <div class="label">Services</div>
-  <h2>What I do</h2>
-  <div class="svc">
-    <div><h3>Website design &amp; build</h3><p>Custom, responsive sites that load fast and rank locally.</p></div>
-    <div><h3>Booking &amp; order forms</h3><p>Connected to Google Sheets, email or a database.</p></div>
-    <div><h3>Admin dashboards</h3><p>Update events, products and photos without code.</p></div>
-    <div><h3>Redesigns</h3><p>Modernizing outdated or template-locked sites.</p></div>
+<section id="services"><div class="wrap">
+  <div class="reveal"><div class="label">Services</div><h2>What I <em>do.</em></h2></div>
+  <div class="svc reveal">
+    <div><b>01</b><h3>Design &amp; build</h3><p>Custom, responsive sites that load fast and rank locally.</p></div>
+    <div><b>02</b><h3>Booking &amp; forms</h3><p>Connected to Google Sheets, email or a database.</p></div>
+    <div><b>03</b><h3>Admin dashboards</h3><p>Update events, products and photos without code.</p></div>
+    <div><b>04</b><h3>Redesigns</h3><p>Modernizing outdated or template-locked sites.</p></div>
   </div>
-</section>
+</div></section>
 
-<section class="contact" id="contact">
-  <div class="label">Contact</div>
-  <h2>Have a project in mind?</h2>
-  <a class="mail" href="mailto:tanishdave333@gmail.com?subject=Website%20project">tanishdave333@gmail.com</a>
-</section>
-<footer><span>© <span id="yr"></span> Tanish</span><a href="https://github.com/Tanish-333" target="_blank" rel="noopener">GitHub</a></footer>
+<section class="contact" id="contact"><div class="wrap">
+  <div class="label reveal">Contact</div>
+  <h2 class="reveal">Have a project in <em>mind?</em></h2>
+  <a class="mail reveal" href="mailto:tanishdave333@gmail.com?subject=Website%20project">tanishdave333@gmail.com</a>
+</div></section>
+<footer><div class="wrap"><span>© <span id="yr"></span> Tanish</span><a href="https://github.com/Tanish-333" target="_blank" rel="noopener">GitHub ↗</a></div></footer>
 
 <div class="viewer" id="viewer" role="dialog" aria-modal="true">
   <div class="v-top">
@@ -120,7 +171,7 @@ footer{padding:24px var(--gut);color:var(--mute);font-size:13px;border-top:1px s
 </div>
 
 <script>
-/* demo: folder in /demos (embedded). live: real URL (optional).
+/* demo: folder in /demos (embedded). live: real URL.
    Projects with only live show "Click this link." pointing at that URL. */
 const PROJECTS=[
  {t:"Angad Ahluwalia Real Estate",d:"Real estate",demo:"angad"},
@@ -141,8 +192,10 @@ const $=s=>document.querySelector(s);
 
 const grid=$("#grid");
 PROJECTS.forEach((p,i)=>{
-  const b=document.createElement("button");b.className="card";
-  b.innerHTML=`<div class="shot">${p.demo?`<iframe src="${embed(p)}" loading="lazy" tabindex="-1" title="${p.t}"></iframe>`:`<div class="ph">${p.t}</div>`}</div><h3>${p.t}</h3><p>${p.d}</p>`;
+  const b=document.createElement("button");b.className="card reveal"+(i===0?" big":"");
+  const host=p.live?p.live.replace(/^https?:\/\//,"").replace(/\/$/,""):`${p.demo}.preview`;
+  b.innerHTML=`<div class="win"><div class="bar"><i></i><i></i><i></i><span>${host}</span></div><div class="shot">${p.demo?`<iframe src="${embed(p)}" loading="lazy" tabindex="-1" title="${p.t}"></iframe>`:`<div class="ph"><div>${p.t}<small>Click to visit the live site</small></div></div>`}</div></div>
+  <div class="info"><div><h3>${p.t}</h3><p>${p.d}</p></div><span class="num">${String(i+1).padStart(2,"0")} <span class="arrow">↗</span></span></div>`;
   b.onclick=()=>openV(p);grid.appendChild(b);
 });
 function fit(){document.querySelectorAll(".shot").forEach(s=>{const f=s.querySelector("iframe");if(!f)return;const k=s.clientWidth/1440;f.style.transform=`scale(${k})`;f.style.height=s.clientHeight/k+"px"})}
@@ -152,8 +205,9 @@ const V=$("#viewer"),F=$("#vFrame"),fr=$("#frame");
 function openV(p){
   $("#vTitle").textContent=p.t;
   const o=$("#vOpen");
-  $("#vModes").style.display=p.demo?"contents":"none";if(p.demo){fr.style.display="";$("#nolive").style.display="none";F.src=embed(p);o.href=embed(p);o.style.display=""}
-  else{fr.style.display="none";const n=$("#nolive");n.style.display="block";$("#nolink").href=link(p);o.style.display="none";F.removeAttribute("src")}
+  $("#vModes").style.display=p.demo?"contents":"none";
+  if(p.demo){fr.style.display="";$("#nolive").style.display="none";F.src=embed(p);o.href=embed(p);o.style.display=""}
+  else{fr.style.display="none";$("#nolive").style.display="block";$("#nolink").href=link(p);o.style.display="none";F.removeAttribute("src")}
   V.classList.add("open");document.body.style.overflow="hidden";
 }
 function closeV(){V.classList.remove("open");document.body.style.overflow="";F.removeAttribute("src")}
@@ -162,6 +216,10 @@ $("#bDesk").onclick=()=>{fr.classList.remove("mobile");$("#bDesk").classList.add
 $("#bMob").onclick=()=>{fr.classList.add("mobile");$("#bMob").classList.add("on");$("#bDesk").classList.remove("on")};
 addEventListener("keydown",e=>{if(e.key==="Escape")closeV()});
 $("#yr").textContent=new Date().getFullYear();
+
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.1});
+document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
+addEventListener("scroll",()=>$("#nav").classList.toggle("scrolled",scrollY>10),{passive:true});
 </script>
 </body>
 </html>

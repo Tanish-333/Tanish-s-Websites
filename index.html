@@ -4,371 +4,164 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Tanish — Freelance Web Developer</title>
-<meta name="description" content="Freelance web developer in Kitchener–Waterloo building fast, cinematic websites for local businesses and non-profits.">
-<meta name="theme-color" content="#08080a">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2308080a'/%3E%3Cpath d='M8 9h16M16 9v15' stroke='%23ff5a36' stroke-width='3.5' stroke-linecap='round'/%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;1,9..144,300;1,9..144,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<meta name="description" content="Freelance web developer in Kitchener–Waterloo building fast, clean websites for local businesses and non-profits.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23000'/%3E%3Cpath d='M8 9h16M16 9v15' stroke='%23fff' stroke-width='3.5'/%3E%3C/svg%3E">
 <style>
-:root{
-  --bg:#08080a; --bg2:#0f0f13; --ink:#f3efe8; --mute:#8d8a86; --line:rgba(243,239,232,.12);
-  --accent:#ff5a36; --accent2:#ffb36b;
-  --serif:'Fraunces',Georgia,serif; --sans:'Inter',system-ui,sans-serif; --mono:'JetBrains Mono',ui-monospace,monospace;
-  --gut:clamp(20px,4vw,64px);
-}
+:root{--bg:#000;--ink:#fff;--mute:#8a8a8a;--line:#262626;--gut:clamp(20px,5vw,72px);--serif:Georgia,'Times New Roman',serif;--sans:system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-weight:300;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
-a{color:inherit;text-decoration:none}
-img{max-width:100%;display:block}
-::selection{background:var(--accent);color:#000}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+::selection{background:#fff;color:#000}
 
-/* film grain + vignette */
-.grain{position:fixed;inset:-50%;z-index:90;pointer-events:none;opacity:.07;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  animation:grain 1s steps(6) infinite}
-@keyframes grain{0%{transform:translate(0,0)}20%{transform:translate(-4%,3%)}40%{transform:translate(3%,-5%)}60%{transform:translate(-2%,6%)}80%{transform:translate(5%,2%)}100%{transform:translate(0,0)}}
-.vig{position:fixed;inset:0;z-index:89;pointer-events:none;background:radial-gradient(ellipse at center,transparent 55%,rgba(0,0,0,.55))}
+nav{display:flex;justify-content:space-between;align-items:center;padding:24px var(--gut)}
+.logo{font:400 20px var(--serif);text-decoration:none}
+nav ul{display:flex;gap:28px;list-style:none;font-size:14px}
+nav ul a{text-decoration:none;color:var(--mute);transition:color .2s}
+nav ul a:hover{color:var(--ink)}
 
-/* loader */
-.loader{position:fixed;inset:0;z-index:200;background:#000;display:grid;place-items:center;transition:opacity .8s .2s,visibility .8s .2s}
-.loader.done{opacity:0;visibility:hidden}
-.loader .count{font-family:var(--mono);font-size:13px;letter-spacing:.3em;color:var(--mute)}
-.loader .count b{display:block;font:300 clamp(64px,14vw,160px)/1 var(--serif);color:var(--ink);letter-spacing:-.04em;margin-bottom:8px}
-.bar{position:fixed;left:0;top:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2));width:0;z-index:150}
-
-/* cursor */
-.cursor{position:fixed;left:0;top:0;width:12px;height:12px;border-radius:50%;background:var(--ink);mix-blend-mode:difference;pointer-events:none;z-index:300;transform:translate(-50%,-50%);transition:width .25s,height .25s;display:none}
-.cursor.big{width:64px;height:64px}
-@media (hover:hover) and (pointer:fine){.cursor{display:block} body{cursor:none} a,button{cursor:none}}
-
-/* nav */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:22px var(--gut);mix-blend-mode:difference}
-.logo{font:500 18px var(--serif);letter-spacing:-.02em}
-.logo i{color:var(--accent);font-style:normal}
-nav ul{display:flex;gap:32px;list-style:none;font:400 12px var(--mono);letter-spacing:.14em;text-transform:uppercase}
-nav ul a{opacity:.7;transition:opacity .2s}nav ul a:hover{opacity:1}
-@media(max-width:700px){nav ul li:not(:last-child){display:none}}
-
-/* hero */
-.hero{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 var(--gut) calc(9vh + 36px);overflow:hidden}
-.hero canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0}
-.hero::before,.hero::after{content:"";position:absolute;left:0;right:0;height:9vh;background:#000;z-index:2}
-.hero::before{top:0}.hero::after{bottom:0}
-.hero > *:not(canvas){position:relative;z-index:3}
-.kicker{font:400 12px var(--mono);letter-spacing:.3em;text-transform:uppercase;color:var(--accent);margin-bottom:24px;display:flex;align-items:center;gap:14px}
-.kicker::before{content:"";width:40px;height:1px;background:var(--accent)}
-h1{font:300 clamp(48px,11.5vw,190px)/.92 var(--serif);letter-spacing:-.045em;max-width:14ch}
-h1 em{font-style:italic;color:var(--accent2);font-weight:300}
-.line{display:block;overflow:hidden}
-.line span{display:block;transform:translateY(110%);transition:transform 1.2s cubic-bezier(.2,.8,.2,1)}
-.go .line span{transform:none}
-.line:nth-child(2) span{transition-delay:.12s}.line:nth-child(3) span{transition-delay:.24s}
-.hero-foot{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;margin-top:40px;flex-wrap:wrap}
-.hero-foot p{max-width:46ch;color:var(--mute);font-size:clamp(15px,1.3vw,18px)}
-.scroll{font:400 11px var(--mono);letter-spacing:.3em;text-transform:uppercase;color:var(--mute);display:flex;align-items:center;gap:12px}
-.scroll i{display:block;width:1px;height:48px;background:linear-gradient(var(--ink),transparent);animation:drip 2s infinite}
-@keyframes drip{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
-
-/* marquee */
-.marquee{border-block:1px solid var(--line);padding:22px 0;overflow:hidden;white-space:nowrap}
-.marquee div{display:inline-block;animation:mq 38s linear infinite;font:300 clamp(28px,4vw,56px) var(--serif);letter-spacing:-.02em;color:var(--mute)}
-.marquee span{margin:0 28px}.marquee b{color:var(--accent);font-weight:400}
-@keyframes mq{to{transform:translateX(-50%)}}
-
-section{padding:clamp(80px,14vw,200px) var(--gut)}
-.label{font:400 12px var(--mono);letter-spacing:.3em;text-transform:uppercase;color:var(--accent);margin-bottom:28px}
-h2{font:300 clamp(36px,6vw,92px)/1 var(--serif);letter-spacing:-.035em;max-width:18ch}
-h2 em{font-style:italic;color:var(--accent2)}
-.reveal{opacity:0;transform:translateY(40px);transition:opacity 1s,transform 1s cubic-bezier(.2,.8,.2,1)}
-.reveal.in{opacity:1;transform:none}
-
-/* about */
-.about{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,6vw,120px);align-items:start}
-.about p{font-size:clamp(16px,1.4vw,20px);color:#cfcac2;margin-bottom:20px}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px;border-top:1px solid var(--line);padding-top:32px}
-.stats b{display:block;font:300 clamp(40px,5vw,72px)/1 var(--serif);letter-spacing:-.04em}
-.stats span{font:400 11px var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--mute)}
-@media(max-width:800px){.about{grid-template-columns:1fr}}
+section{padding:clamp(64px,10vw,140px) var(--gut)}
+.label{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin-bottom:20px}
+h1{font:400 clamp(44px,9vw,132px)/1 var(--serif);letter-spacing:-.04em;max-width:13ch}
+h2{font:400 clamp(32px,5vw,64px)/1.05 var(--serif);letter-spacing:-.03em}
+.hero{padding-top:clamp(60px,12vw,160px)}
+.hero p{margin-top:32px;max-width:48ch;color:var(--mute);font-size:clamp(16px,1.4vw,20px)}
 
 /* work */
-.work{padding-inline:0}
-.work-head{padding-inline:var(--gut);display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:60px}
-.hint{font:400 11px var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--mute)}
-.reel{display:flex;gap:clamp(16px,2vw,32px);overflow-x:auto;padding:0 var(--gut) 24px;scroll-snap-type:x mandatory;scrollbar-width:thin;scrollbar-color:var(--accent) transparent}
-.card{flex:0 0 clamp(300px,62vw,880px);scroll-snap-align:center;position:relative;border:1px solid var(--line);border-radius:6px;overflow:hidden;background:var(--bg2);text-align:left;color:inherit;font:inherit;padding:0;transition:border-color .4s,transform .6s cubic-bezier(.2,.8,.2,1)}
-.card:hover{border-color:var(--accent);transform:translateY(-6px)}
-.shot{position:relative;aspect-ratio:16/10;overflow:hidden;background:#000}
-.shot iframe{position:absolute;left:0;top:0;width:1440px;height:900px;border:0;transform-origin:0 0;pointer-events:none;background:#fff}
-.shot .ph{position:absolute;inset:0;display:grid;place-items:center;padding:24px;text-align:center;background:var(--g);}
-.shot .ph b{font:300 clamp(28px,4vw,56px)/1.05 var(--serif);letter-spacing:-.03em;color:#fff;text-shadow:0 2px 30px rgba(0,0,0,.4)}
-.shot::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 55%,rgba(8,8,10,.85));pointer-events:none}
-.play{position:absolute;right:20px;bottom:20px;z-index:2;width:64px;height:64px;border-radius:50%;background:var(--ink);color:#000;display:grid;place-items:center;font-size:18px;transition:transform .4s,background .3s}
-.card:hover .play{transform:scale(1.15);background:var(--accent)}
-.meta{padding:22px 26px 28px;display:flex;justify-content:space-between;gap:20px;align-items:flex-start}
-.meta h3{font:400 clamp(22px,2.2vw,32px)/1.1 var(--serif);letter-spacing:-.02em}
-.meta p{color:var(--mute);font-size:14px;margin-top:6px;max-width:44ch}
-.meta .no{font:400 12px var(--mono);color:var(--accent);letter-spacing:.2em}
-.tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:14px}
-.tags span{font:400 10px var(--mono);letter-spacing:.12em;text-transform:uppercase;border:1px solid var(--line);padding:4px 9px;border-radius:99px;color:var(--mute)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,420px),1fr));gap:40px 28px;margin-top:48px}
+.card{background:none;border:0;color:inherit;font:inherit;text-align:left;cursor:pointer;display:block;width:100%}
+.shot{position:relative;aspect-ratio:16/10;overflow:hidden;border:1px solid var(--line);background:#111;transition:border-color .25s}
+.shot iframe{position:absolute;left:0;top:0;width:1440px;height:900px;border:0;transform-origin:0 0;pointer-events:none;background:#fff;filter:grayscale(1);transition:filter .4s}
+.card:hover .shot{border-color:#fff}
+.card:hover iframe{filter:none}
+.shot .ph{position:absolute;inset:0;display:grid;place-items:center;padding:20px;text-align:center;font:400 clamp(22px,2.4vw,32px)/1.1 var(--serif);color:#fff;background:#0d0d0d}
+.card h3{font:400 22px var(--serif);margin-top:16px;letter-spacing:-.01em}
+.card p{color:var(--mute);font-size:14px;margin-top:4px}
 
 /* services */
-.svc{margin-top:70px;border-top:1px solid var(--line)}
-.svc-row{display:grid;grid-template-columns:80px 1fr 1.2fr;gap:24px;padding:34px 0;border-bottom:1px solid var(--line);align-items:baseline;transition:padding .4s,background .4s}
-.svc-row:hover{padding-left:20px;background:linear-gradient(90deg,rgba(255,90,54,.07),transparent)}
-.svc-row i{font:400 12px var(--mono);color:var(--accent);font-style:normal}
-.svc-row h3{font:300 clamp(24px,3vw,44px) var(--serif);letter-spacing:-.025em}
-.svc-row p{color:var(--mute)}
-@media(max-width:760px){.svc-row{grid-template-columns:40px 1fr}.svc-row p{grid-column:2}}
-
-/* process */
-.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);margin-top:70px;border:1px solid var(--line)}
-.step{background:var(--bg);padding:32px 26px 40px}
-.step b{font:300 56px var(--serif);color:var(--accent);display:block;margin-bottom:34px;letter-spacing:-.04em}
-.step h4{font:500 14px var(--mono);letter-spacing:.14em;text-transform:uppercase;margin-bottom:10px}
-.step p{color:var(--mute);font-size:14px}
-@media(max-width:900px){.steps{grid-template-columns:1fr 1fr}}@media(max-width:520px){.steps{grid-template-columns:1fr}}
+.svc{margin-top:40px;border-top:1px solid var(--line)}
+.svc div{display:flex;justify-content:space-between;gap:24px;padding:22px 0;border-bottom:1px solid var(--line)}
+.svc h3{font:400 clamp(20px,2.4vw,30px) var(--serif)}
+.svc p{color:var(--mute);max-width:42ch;text-align:right}
+@media(max-width:700px){.svc div{flex-direction:column;gap:6px}.svc p{text-align:left}}
 
 /* contact */
-.contact{text-align:center;position:relative;overflow:hidden;border-top:1px solid var(--line)}
-.contact::before{content:"";position:absolute;left:50%;top:50%;width:80vw;height:80vw;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(255,90,54,.18),transparent 60%);pointer-events:none}
-.contact h2{margin:0 auto 40px;max-width:12ch;position:relative}
-.mail{display:inline-block;position:relative;font:300 clamp(22px,4.6vw,64px) var(--serif);letter-spacing:-.03em;border-bottom:1px solid var(--accent);padding-bottom:6px;transition:color .3s}
-.mail:hover{color:var(--accent)}
-.btns{margin-top:44px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative}
-.btn{font:500 12px var(--mono);letter-spacing:.16em;text-transform:uppercase;padding:16px 28px;border:1px solid var(--line);border-radius:99px;transition:.3s}
-.btn.fill{background:var(--accent);border-color:var(--accent);color:#000}
-.btn:hover{border-color:var(--ink)}.btn.fill:hover{background:var(--ink);border-color:var(--ink)}
-footer{padding:28px var(--gut);display:flex;justify-content:space-between;font:400 11px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--mute);border-top:1px solid var(--line);flex-wrap:wrap;gap:10px}
+.contact{border-top:1px solid var(--line)}
+.mail{display:inline-block;margin-top:28px;font:400 clamp(22px,4.4vw,56px) var(--serif);letter-spacing:-.02em;text-decoration:none;border-bottom:1px solid #fff;padding-bottom:4px}
+.mail:hover{color:var(--mute);border-color:var(--mute)}
+footer{padding:24px var(--gut);color:var(--mute);font-size:13px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 
-/* theatre modal */
-.theatre{position:fixed;inset:0;z-index:250;background:rgba(4,4,6,.96);backdrop-filter:blur(14px);display:flex;flex-direction:column;opacity:0;visibility:hidden;transition:.5s}
-.theatre.open{opacity:1;visibility:visible}
-.t-top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px var(--gut);border-bottom:1px solid var(--line);flex-wrap:wrap}
-.t-title{font:400 22px var(--serif);letter-spacing:-.02em}
-.t-title small{display:block;font:400 11px var(--mono);letter-spacing:.14em;color:var(--mute);text-transform:uppercase}
-.t-ctrl{display:flex;gap:8px;align-items:center}
-.t-ctrl button,.t-ctrl a{font:500 11px var(--mono);letter-spacing:.14em;text-transform:uppercase;padding:10px 16px;border:1px solid var(--line);border-radius:99px;background:none;color:var(--ink);transition:.25s}
-.t-ctrl button:hover,.t-ctrl a:hover,.t-ctrl button.on{background:var(--ink);color:#000}
-.t-stage{flex:1;display:grid;place-items:center;padding:24px;min-height:0}
-.frame{height:100%;max-height:100%;width:100%;max-width:1400px;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#111;transition:max-width .6s cubic-bezier(.2,.8,.2,1),border-radius .4s;box-shadow:0 40px 120px rgba(0,0,0,.7);display:flex;flex-direction:column}
-.frame.mobile{max-width:390px;border-radius:34px;border-width:6px}
-.chrome{display:flex;align-items:center;gap:8px;padding:10px 14px;background:#17171b;border-bottom:1px solid var(--line)}
-.chrome i{width:10px;height:10px;border-radius:50%;background:#3a3a40}
-.chrome span{margin-left:10px;font:400 11px var(--mono);color:var(--mute);background:#0c0c0f;padding:4px 14px;border-radius:99px;flex:1;max-width:420px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.frame iframe{flex:1;width:100%;border:0;background:#fff}
-.t-nav{position:absolute;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;border:1px solid var(--line);background:rgba(8,8,10,.8);color:var(--ink);font-size:18px;z-index:2}
-.t-nav:hover{background:var(--accent);color:#000}
-.t-nav.prev{left:10px}.t-nav.next{right:10px}
-@media(max-width:900px){.t-nav{display:none}}
-.noembed{display:none;place-items:center;text-align:center;padding:40px;flex:1;color:var(--mute)}
-.noembed h3{font:300 40px var(--serif);color:var(--ink);margin-bottom:12px}
-
-@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.line span{transform:none}.reveal{opacity:1;transform:none}.loader{display:none}}
+/* viewer */
+.viewer{position:fixed;inset:0;z-index:50;background:#000;display:none;flex-direction:column}
+.viewer.open{display:flex}
+.v-top{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px var(--gut);border-bottom:1px solid var(--line);flex-wrap:wrap}
+.v-top h3{font:400 20px var(--serif)}
+.v-ctrl{display:flex;gap:8px}
+.v-ctrl button,.v-ctrl a{font:inherit;font-size:13px;padding:8px 16px;border:1px solid var(--line);background:none;color:var(--ink);text-decoration:none;cursor:pointer}
+.v-ctrl button:hover,.v-ctrl a:hover,.v-ctrl button.on{background:#fff;color:#000}
+.v-stage{flex:1;min-height:0;padding:20px;display:grid;place-items:center}
+.frame{width:100%;max-width:1400px;height:100%;border:1px solid var(--line);background:#fff;transition:max-width .4s}
+.frame.mobile{max-width:390px}
+.frame iframe{width:100%;height:100%;border:0}
+.nolive{display:none;text-align:center;font:400 clamp(28px,4vw,48px) var(--serif)}
+.nolive a{border-bottom:1px solid #fff;text-decoration:none}
+.nolive a:hover{color:var(--mute);border-color:var(--mute)}
 </style>
 </head>
 <body>
-<div class="grain"></div><div class="vig"></div><div class="bar" id="bar"></div><div class="cursor" id="cur"></div>
-
-<div class="loader" id="loader"><div class="count"><b id="pct">00</b>LOADING REEL</div></div>
 
 <nav>
-  <a href="#top" class="logo">Tanish<i>.</i></a>
-  <ul><li><a href="#about">About</a></li><li><a href="#work">Work</a></li><li><a href="#services">Services</a></li><li><a href="#contact">Contact</a></li></ul>
+  <a href="#top" class="logo">Tanish</a>
+  <ul><li><a href="#work">Work</a></li><li><a href="#services">Services</a></li><li><a href="#contact">Contact</a></li></ul>
 </nav>
 
-<header class="hero" id="top">
-  <canvas id="fx"></canvas>
-  <div class="kicker">Freelance web developer · Kitchener–Waterloo</div>
-  <h1>
-    <span class="line"><span>Websites that</span></span>
-    <span class="line"><span>feel like <em>cinema,</em></span></span>
-    <span class="line"><span>load like lightning.</span></span>
-  </h1>
-  <div class="hero-foot">
-    <p>I design and build fast, beautiful sites for local businesses and non-profits — from a first sketch to a live, bookable, manageable website.</p>
-    <div class="scroll"><i></i> Scroll to watch the reel</div>
-  </div>
-</header>
-
-<div class="marquee" aria-hidden="true"><div>
-  <span>Restaurants</span><b>✦</b><span>Real estate</span><b>✦</b><span>Non-profits</span><b>✦</b><span>Retail</span><b>✦</b><span>Laundromats</span><b>✦</b><span>Lawn care</span><b>✦</b><span>Events</span><b>✦</b><span>Streetwear</span><b>✦</b>
-  <span>Restaurants</span><b>✦</b><span>Real estate</span><b>✦</b><span>Non-profits</span><b>✦</b><span>Retail</span><b>✦</b><span>Laundromats</span><b>✦</b><span>Lawn care</span><b>✦</b><span>Events</span><b>✦</b><span>Streetwear</span><b>✦</b>
-</div></div>
-
-<section id="about">
-  <div class="about">
-    <div class="reveal"><div class="label">01 — The director</div><h2>One developer. <em>Every scene</em> of your website.</h2></div>
-    <div class="reveal">
-      <p>I'm a freelance web developer who builds the whole thing: the look, the code, the booking forms, the admin dashboards and the launch. No agency hand-offs, no templates pretending to be custom work.</p>
-      <p>Most of my clients are local — restaurants, shops, associations and service businesses that need a site that looks premium, works on every phone and is easy to keep up to date.</p>
-      <div class="stats">
-        <div><b data-n="11">0</b><span>Sites shipped</span></div>
-        <div><b data-n="7">0</b><span>Industries</span></div>
-        <div><b data-n="100">0</b><span>% mobile-ready</span></div>
-      </div>
-    </div>
-  </div>
+<section class="hero" id="top">
+  <div class="label">Freelance web developer · Kitchener–Waterloo</div>
+  <h1>Clean, fast websites for local business.</h1>
+  <p>I design and build the whole site — look, code, booking forms and admin tools — for restaurants, shops, services and non-profits.</p>
 </section>
 
-<section class="work" id="work">
-  <div class="work-head reveal">
-    <div><div class="label">02 — Now showing</div><h2>Selected <em>work</em></h2></div>
-    <div class="hint">Drag or scroll sideways → click a film to open it live</div>
-  </div>
-  <div class="reel" id="reel"></div>
+<section id="work">
+  <div class="label">Selected work</div>
+  <h2>Click any site to open it.</h2>
+  <div class="grid" id="grid"></div>
 </section>
 
 <section id="services">
-  <div class="reveal"><div class="label">03 — What I do</div><h2>Everything between <em>idea</em> and <em>launch.</em></h2></div>
-  <div class="svc reveal">
-    <div class="svc-row"><i>01</i><h3>Website design &amp; build</h3><p>Custom, hand-coded sites — responsive, accessible and tuned for speed and local SEO.</p></div>
-    <div class="svc-row"><i>02</i><h3>Booking &amp; order forms</h3><p>Online booking, quote and order flows wired to Google Sheets, email or your own database.</p></div>
-    <div class="svc-row"><i>03</i><h3>Admin dashboards &amp; CMS</h3><p>Password-protected panels so you can update events, products, menus and photos without touching code.</p></div>
-    <div class="svc-row"><i>04</i><h3>Redesigns &amp; rebuilds</h3><p>Taking an outdated or template-locked site and rebuilding it into something modern you fully own.</p></div>
-  </div>
-</section>
-
-<section id="process">
-  <div class="reveal"><div class="label">04 — The production</div><h2>How we <em>make it.</em></h2></div>
-  <div class="steps reveal">
-    <div class="step"><b>01</b><h4>Script</h4><p>We talk goals, audience and what the site has to do for your business.</p></div>
-    <div class="step"><b>02</b><h4>Storyboard</h4><p>Structure, look and feel — you approve the direction before build.</p></div>
-    <div class="step"><b>03</b><h4>Shoot</h4><p>I build it, test it on real devices and connect forms and data.</p></div>
-    <div class="step"><b>04</b><h4>Premiere</h4><p>Launch, hand-over and support so it keeps working for you.</p></div>
+  <div class="label">Services</div>
+  <h2>What I do</h2>
+  <div class="svc">
+    <div><h3>Website design &amp; build</h3><p>Custom, responsive sites that load fast and rank locally.</p></div>
+    <div><h3>Booking &amp; order forms</h3><p>Connected to Google Sheets, email or a database.</p></div>
+    <div><h3>Admin dashboards</h3><p>Update events, products and photos without code.</p></div>
+    <div><h3>Redesigns</h3><p>Modernizing outdated or template-locked sites.</p></div>
   </div>
 </section>
 
 <section class="contact" id="contact">
-  <div class="label reveal">05 — Your turn</div>
-  <h2 class="reveal">Let's make your <em>next scene.</em></h2>
-  <a class="mail reveal" href="mailto:tanishdave333@gmail.com?subject=Website%20project">tanishdave333@gmail.com</a>
-  <div class="btns reveal">
-    <a class="btn fill" href="mailto:tanishdave333@gmail.com?subject=Website%20project">Start a project</a>
-    <a class="btn" href="https://github.com/Tanish-333" target="_blank" rel="noopener">GitHub</a>
-  </div>
+  <div class="label">Contact</div>
+  <h2>Have a project in mind?</h2>
+  <a class="mail" href="mailto:tanishdave333@gmail.com?subject=Website%20project">tanishdave333@gmail.com</a>
 </section>
-<footer><span>© <span id="yr"></span> Tanish</span><span>Designed &amp; coded by hand</span></footer>
+<footer><span>© <span id="yr"></span> Tanish</span><a href="https://github.com/Tanish-333" target="_blank" rel="noopener">GitHub</a></footer>
 
-<div class="theatre" id="theatre" role="dialog" aria-modal="true" aria-label="Project viewer">
-  <div class="t-top">
-    <div class="t-title" id="tTitle"></div>
-    <div class="t-ctrl">
-      <button id="bDesk" class="on">Desktop</button><button id="bMob">Mobile</button>
-      <a id="tOpen" target="_blank" rel="noopener">Open ↗</a><button id="tClose">Close ✕</button>
+<div class="viewer" id="viewer" role="dialog" aria-modal="true">
+  <div class="v-top">
+    <h3 id="vTitle"></h3>
+    <div class="v-ctrl"><span id="vModes" style="display:contents">
+      <button id="bDesk" class="on">Desktop</button><button id="bMob">Mobile</button></span>
+      <a id="vOpen" target="_blank" rel="noopener">Open ↗</a><button id="vClose">Close</button>
     </div>
   </div>
-  <div class="t-stage" style="position:relative">
-    <button class="t-nav prev" id="tPrev" aria-label="Previous">←</button>
-    <button class="t-nav next" id="tNext" aria-label="Next">→</button>
-    <div class="frame" id="frame">
-      <div class="chrome"><i></i><i></i><i></i><span id="tUrl"></span></div>
-      <iframe id="tFrame" title="Project preview" loading="lazy"></iframe>
-      <div class="noembed" id="noembed"><div><h3>Live preview coming soon</h3><p id="noembedMsg"></p></div></div>
-    </div>
+  <div class="v-stage">
+    <div class="frame" id="frame"><iframe id="vFrame" title="Project preview"></iframe></div>
+    <div class="nolive" id="nolive"><a id="nolink" target="_blank" rel="noopener">Click this link.</a></div>
   </div>
 </div>
 
 <script>
-/* ============ PROJECTS ============
-   demo:  folder inside /demos that is embedded live (static sites)
-   live:  optional real URL — set it and the viewer embeds the live site and shows "Open ↗"
-*/
+/* demo: folder in /demos (embedded). live: real URL (optional).
+   Projects with neither show "Click this link." pointing at live, or the GitHub repo. */
 const PROJECTS=[
- {t:"Angad Ahluwalia Real Estate",d:"Full rebuild of a Toronto realtor's site — buying/selling guides, mortgage calculator, home-valuation form.",tags:["Real estate","Forms → Sheets","Calculator"],demo:"angad",live:"",g:"linear-gradient(135deg,#1c2a3a,#0b1018)"},
- {t:"La Crema Peruvian",d:"Restaurant site with a sticky-nav menu and ~50 dish photos, reviews and newsletter signup.",tags:["Restaurant","Menu","Static"],demo:"la-crema",live:"",g:"linear-gradient(135deg,#5b1f14,#1a0907)"},
- {t:"Expressive Unicorns",d:"Playful landing page and booking system for a face & body painting business.",tags:["Booking","Gallery","Lightbox"],demo:"unicorn",live:"",g:"linear-gradient(135deg,#5a2a7a,#14081f)"},
- {t:"KW's Cheapest",d:"Streetwear resale drop site with a password-protected admin and cloud-synced catalog.",tags:["E-commerce","Admin","Serverless"],demo:"kw-cheapest",live:"",g:"linear-gradient(135deg,#1f1f1f,#050505)"},
- {t:"The Indian Supermarket",d:"Multi-location grocery site covering Kitchener, Guelph, Kanata and Nepean.",tags:["Retail","Multi-location","SEO"],demo:"indian-supermarket",live:"",g:"linear-gradient(135deg,#7a3a0a,#1c0d02)"},
- {t:"RJ Mowing KW",d:"Lawn-care business with a smart booking form and half-hour time-slot logic.",tags:["Service business","Booking","Apps Script"],demo:"rj-mowing",live:"",g:"linear-gradient(135deg,#1d5a2a,#07170b)"},
- {t:"Soapy Bubbles Laundromat",d:"Wash & fold and dry-cleaning order form with text/call fallback so no enquiry is lost.",tags:["Local business","Order form","Sheets"],demo:"soapy",live:"",g:"linear-gradient(135deg,#1a5a8a,#06141f)"},
- {t:"Community Kitchen Co-op KW",d:"Non-profit site on Next.js + Postgres with an admin CMS: events, photo galleries and video, managed without code.",tags:["Non-profit","Next.js","Admin CMS","Prisma"],demo:"",live:"",g:"linear-gradient(135deg,#7a4a12,#1a0f03)"},
- {t:"Project 321 Peel",d:"Down Syndrome Association site: team, events, blog, sponsors and settings via an admin dashboard on Neon + Drizzle.",tags:["Non-profit","Next.js","Drizzle","Dashboard"],demo:"",live:"",g:"linear-gradient(135deg,#2a3a8a,#080b1f)"},
- {t:"Hespeler Santa Claus Parade",d:"Community event platform built with Next.js and Prisma.",tags:["Events","Next.js","Prisma"],demo:"",live:"",g:"linear-gradient(135deg,#8a1a1a,#1f0606)"},
- {t:"Kitchener Comic Book Warehouse",d:"Production-ready Next.js storefront site for a comic shop, ready for Vercel.",tags:["Retail","Next.js","Tailwind"],demo:"",live:"",g:"linear-gradient(135deg,#8a6a10,#1f1803)"}
+ {t:"Angad Ahluwalia Real Estate",d:"Real estate",demo:"angad"},
+ {t:"La Crema Peruvian",d:"Restaurant",demo:"la-crema"},
+ {t:"Expressive Unicorns",d:"Face & body painting",demo:"unicorn"},
+ {t:"KW's Cheapest",d:"Streetwear resale",demo:"kw-cheapest"},
+ {t:"The Indian Supermarket",d:"Grocery",demo:"indian-supermarket"},
+ {t:"RJ Mowing KW",d:"Lawn care",demo:"rj-mowing"},
+ {t:"Soapy Bubbles Laundromat",d:"Laundromat",demo:"soapy"},
+ {t:"Community Kitchen Co-op KW",d:"Non-profit",live:"",repo:"kitchencoopkw"},
+ {t:"Project 321 Peel",d:"Non-profit",live:"",repo:"project321peel.com"},
+ {t:"Hespeler Santa Claus Parade",d:"Community event",live:"",repo:"Hespeler-Santa-Claus-Parade"},
+ {t:"Kitchener Comic Book Warehouse",d:"Retail",live:"",repo:"Kitchener-Comic-Book-Warehouse"}
 ];
-const src=p=>p.live||(p.demo?`demos/${p.demo}/index.html`:"");
+const embed=p=>p.demo?`demos/${p.demo}/index.html`:"";
+const link=p=>p.live||(p.demo?embed(p):`https://github.com/Tanish-333/${p.repo}`);
 const $=s=>document.querySelector(s);
 
-/* reel */
-const reel=$("#reel");
+const grid=$("#grid");
 PROJECTS.forEach((p,i)=>{
-  const s=src(p);
-  const b=document.createElement("button");b.className="card";b.dataset.i=i;
-  b.innerHTML=`<div class="shot">${s?`<iframe src="${s}" loading="lazy" tabindex="-1" title="${p.t} preview"></iframe>`:`<div class="ph" style="--g:${p.g}"><b>${p.t}</b></div>`}<div class="play">▶</div></div>
-  <div class="meta"><div><h3>${p.t}</h3><p>${p.d}</p><div class="tags">${p.tags.map(x=>`<span>${x}</span>`).join("")}</div></div><div class="no">${String(i+1).padStart(2,"0")}</div></div>`;
-  b.addEventListener("click",()=>openT(i));
-  reel.appendChild(b);
+  const b=document.createElement("button");b.className="card";
+  b.innerHTML=`<div class="shot">${p.demo?`<iframe src="${embed(p)}" loading="lazy" tabindex="-1" title="${p.t}"></iframe>`:`<div class="ph">${p.t}</div>`}</div><h3>${p.t}</h3><p>${p.d}</p>`;
+  b.onclick=()=>openV(p);grid.appendChild(b);
 });
-function fit(){document.querySelectorAll(".shot").forEach(sh=>{const f=sh.querySelector("iframe");if(f){const k=sh.clientWidth/1440;f.style.transform=`scale(${k})`;f.style.height=(sh.clientHeight/k)+"px"}})}
-addEventListener("resize",fit);
+function fit(){document.querySelectorAll(".shot").forEach(s=>{const f=s.querySelector("iframe");if(!f)return;const k=s.clientWidth/1440;f.style.transform=`scale(${k})`;f.style.height=s.clientHeight/k+"px"})}
+addEventListener("resize",fit);addEventListener("load",fit);fit();
 
-/* drag to scroll */
-let down=false,sx=0,sl=0,moved=0;
-reel.addEventListener("pointerdown",e=>{if(e.pointerType!=="mouse")return;down=true;moved=0;sx=e.clientX;sl=reel.scrollLeft});
-addEventListener("pointermove",e=>{if(!down)return;const dx=e.clientX-sx;moved=Math.max(moved,Math.abs(dx));reel.scrollLeft=sl-dx});
-addEventListener("pointerup",()=>down=false);
-reel.addEventListener("click",e=>{if(moved>6){e.stopPropagation();e.preventDefault();moved=0}},true);
-
-/* theatre */
-let cur=0;const T=$("#theatre"),F=$("#tFrame"),fr=$("#frame");
-function openT(i){
-  cur=(i+PROJECTS.length)%PROJECTS.length;const p=PROJECTS[cur],s=src(p);
-  $("#tTitle").innerHTML=`${p.t}<small>${String(cur+1).padStart(2,"0")} / ${PROJECTS.length} · ${p.tags.join(" · ")}</small>`;
-  $("#tUrl").textContent=p.live||(p.demo?`${p.demo}.preview`:"coming soon");
-  const o=$("#tOpen");
-  if(s){o.href=s;o.style.display="";F.style.display="";$("#noembed").style.display="none";F.src=s}
-  else{o.style.display="none";F.style.display="none";F.removeAttribute("src");const n=$("#noembed");n.style.display="grid";$("#noembedMsg").textContent=p.d+" This build needs a database, so its live link is the next thing to add."}
-  T.classList.add("open");document.body.style.overflow="hidden";
+const V=$("#viewer"),F=$("#vFrame"),fr=$("#frame");
+function openV(p){
+  $("#vTitle").textContent=p.t;
+  const o=$("#vOpen");
+  $("#vModes").style.display=p.demo?"contents":"none";if(p.demo){fr.style.display="";$("#nolive").style.display="none";F.src=embed(p);o.href=embed(p);o.style.display=""}
+  else{fr.style.display="none";const n=$("#nolive");n.style.display="block";$("#nolink").href=link(p);o.style.display="none";F.removeAttribute("src")}
+  V.classList.add("open");document.body.style.overflow="hidden";
 }
-function closeT(){T.classList.remove("open");document.body.style.overflow="";setTimeout(()=>F.removeAttribute("src"),500)}
-$("#tClose").onclick=closeT;$("#tPrev").onclick=()=>openT(cur-1);$("#tNext").onclick=()=>openT(cur+1);
+function closeV(){V.classList.remove("open");document.body.style.overflow="";F.removeAttribute("src")}
+$("#vClose").onclick=closeV;
 $("#bDesk").onclick=()=>{fr.classList.remove("mobile");$("#bDesk").classList.add("on");$("#bMob").classList.remove("on")};
 $("#bMob").onclick=()=>{fr.classList.add("mobile");$("#bMob").classList.add("on");$("#bDesk").classList.remove("on")};
-addEventListener("keydown",e=>{if(!T.classList.contains("open"))return;if(e.key==="Escape")closeT();if(e.key==="ArrowRight")openT(cur+1);if(e.key==="ArrowLeft")openT(cur-1)});
-
-/* reveal, counters, progress */
-const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.15});
-document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
-const co=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;const el=e.target,n=+el.dataset.n,t0=performance.now();
-  (function tick(t){const k=Math.min(1,(t-t0)/1600);el.textContent=Math.round(n*(1-Math.pow(1-k,3)));if(k<1)requestAnimationFrame(tick)})(t0);co.unobserve(el)}),{threshold:.6});
-document.querySelectorAll("[data-n]").forEach(el=>co.observe(el));
-addEventListener("scroll",()=>{const h=document.documentElement;$("#bar").style.width=(scrollY/(h.scrollHeight-innerHeight)*100)+"%"},{passive:true});
+addEventListener("keydown",e=>{if(e.key==="Escape")closeV()});
 $("#yr").textContent=new Date().getFullYear();
-
-/* cursor */
-const c=$("#cur");let cx=0,cy=0,tx=0,ty=0;
-addEventListener("mousemove",e=>{tx=e.clientX;ty=e.clientY});
-(function loop(){cx+=(tx-cx)*.2;cy+=(ty-cy)*.2;c.style.left=cx+"px";c.style.top=cy+"px";requestAnimationFrame(loop)})();
-document.addEventListener("mouseover",e=>c.classList.toggle("big",!!e.target.closest(".card,.btn,.mail,button")));
-
-/* hero light-beam canvas */
-(function(){
-  const cv=$("#fx"),x=cv.getContext("2d");let W,H,mx=.5,my=.5;
-  const rs=()=>{W=cv.width=cv.offsetWidth;H=cv.height=cv.offsetHeight};rs();addEventListener("resize",rs);
-  addEventListener("mousemove",e=>{mx=e.clientX/innerWidth;my=e.clientY/innerHeight});
-  const P=Array.from({length:70},()=>({x:Math.random(),y:Math.random(),r:Math.random()*1.6+.3,s:Math.random()*.0004+.0001}));
-  (function f(t){
-    x.clearRect(0,0,W,H);
-    const gx=W*(.62+(mx-.5)*.12),gy=H*(.38+(my-.5)*.1);
-    let g=x.createRadialGradient(gx,gy,0,gx,gy,Math.max(W,H)*.65);
-    g.addColorStop(0,"rgba(255,110,60,.34)");g.addColorStop(.35,"rgba(255,90,54,.10)");g.addColorStop(1,"rgba(8,8,10,0)");
-    x.fillStyle=g;x.fillRect(0,0,W,H);
-    x.save();x.globalCompositeOperation="lighter";
-    for(let i=0;i<3;i++){const a=-.5+i*.35+Math.sin(t/4000+i)*.05;x.save();x.translate(gx,gy);x.rotate(a);
-      const bg=x.createLinearGradient(0,0,0,H*1.4);bg.addColorStop(0,"rgba(255,179,107,.10)");bg.addColorStop(1,"rgba(255,179,107,0)");
-      x.fillStyle=bg;x.fillRect(-26-i*14,0,52+i*28,H*1.4);x.restore()}
-    x.restore();
-    x.fillStyle="rgba(243,239,232,.55)";
-    P.forEach(p=>{p.y-=p.s;if(p.y<0)p.y=1;x.beginPath();x.arc(p.x*W+Math.sin(t/2000+p.x*9)*8,p.y*H,p.r,0,7);x.fill()});
-    requestAnimationFrame(f)})(0);
-})();
-
-/* loader */
-(function(){let n=0;const el=$("#pct"),L=$("#loader");
-  const iv=setInterval(()=>{n+=Math.ceil(Math.random()*9);if(n>=100){n=100;clearInterval(iv);setTimeout(()=>{L.classList.add("done");document.body.classList.add("go");$(".hero").classList.add("go");fit()},250)}el.textContent=String(n).padStart(2,"0")},55)})();
-addEventListener("load",fit);
 </script>
 </body>
 </html>

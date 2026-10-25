@@ -1,0 +1,51 @@
+# Tanish Dave — Web Design
+
+> Freelance web designer and developer based in Kitchener–Waterloo, Ontario, Canada. Tanish designs and builds custom, fast, mobile-friendly websites for local businesses and non-profits, with local SEO, booking and contact forms, and easy admin tools. Contact: tanishdave333@gmail.com
+
+- Website: https://tanish-dave-websites.vercel.app/
+- Email: tanishdave333@gmail.com (the best way to get in touch or request a quote)
+- Based in: Kitchener–Waterloo, Ontario, Canada
+- Serves: Kitchener, Waterloo, Cambridge, Guelph, Hamilton, Toronto and clients anywhere in Ontario and Canada (work is done remotely by email)
+- GitHub: https://github.com/Tanish-333
+
+## Services
+
+- Custom website design: designed around the business's brand and customers, not a template
+- Mobile-first, fast websites that work on phones, tablets and laptops
+- Local SEO: page titles, descriptions, structured data, sitemaps, and fast loading so nearby customers can find the business on Google
+- Online booking, ordering and contact forms
+- Admin dashboards so owners can update menus, products, events and photos without code
+- Redesigns of outdated or template-locked websites
+- Domain and hosting setup, Google Maps, opening hours, social links and ongoing support
+
+## How it works
+
+1. Email Tanish about the business and what it needs (no commitment)
+2. Plan the pages and features, and receive a clear quote before any work starts
+3. Tanish designs and builds the site; the client reviews it before launch
+4. Launch on the client's domain, with ongoing updates available
+
+## Websites built
+
+- [La Crema Peruvian](https://tanish-dave-websites.vercel.app/demos/la-crema/index.html): restaurant in Kitchener, ON, with a full online menu, reviews and hours
+- [Angad Ahluwalia Real Estate](https://tanish-dave-websites.vercel.app/demos/angad/index.html): realtor in Toronto, ON, with buying, selling and mortgage guides
+- [RJ Mowing KW](https://tanish-dave-websites.vercel.app/demos/rj-mowing/index.html): lawn care in Kitchener–Waterloo–Cambridge with online booking
+- [Kitchener Comic Book Warehouse](https://kitchener-comic-book-warehouse.vercel.app/): comic book store in Kitchener, ON
+- [Project 321 Peel](https://project321peel.vercel.app/): Down syndrome association in Peel Region, ON
+- [Community Kitchen Co-op KW](https://kitchencoopkw.vercel.app/): non-profit food co-op in Kitchener–Waterloo
+- [Hespeler Santa Claus Parade](https://hespeler-santa-claus-parade.vercel.app/): community event in Cambridge, ON
+- [Expressive Unicorns](https://tanish-dave-websites.vercel.app/demos/unicorn/index.html): face and body painting with event booking
+- [Soapy Bubbles Laundromat](https://tanish-dave-websites.vercel.app/demos/soapy/index.html): laundromat and dry cleaning in Hamilton, ON
+- [The Indian Supermarket](https://tanish-dave-websites.vercel.app/demos/indian-supermarket/index.html): South Asian grocery chain in Kitchener, Guelph and Ottawa
+- [Zain Al Haj Ali](https://zain-soccer-portfolio.vercel.app/): youth soccer player portfolio, Kitchener
+- [KT Resells](https://kt-resells.vercel.app/): online streetwear shop
+- [ES Elite Suppliez](https://es-elite-suppliez.vercel.app/): online streetwear shop
+- [KW's Cheapest](https://tanish-dave-websites.vercel.app/demos/kw-cheapest/index.html): streetwear resale in Kitchener–Waterloo
+
+## FAQ
+
+- Cost: depends on pages and features; email for a clear quote before any work starts
+- Location: based in Kitchener–Waterloo, works with clients across Ontario and beyond
+- Mobile: every site is mobile-first
+- Google: every site is built with local SEO basics from day one
+- Updates: clients can get admin tools to update content themselves, and Tanish is available for changes

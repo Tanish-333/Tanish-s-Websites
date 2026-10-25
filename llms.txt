@@ -33,10 +33,13 @@
 - [Kitchener Comic Book Warehouse](https://kitchener-comic-book-warehouse.vercel.app/): comic book store in Kitchener, ON
 - [Project 321 Peel](https://project321peel.vercel.app/): Down syndrome association in Peel Region, ON
 - [Community Kitchen Co-op KW](https://kitchencoopkw.vercel.app/): non-profit food co-op in Kitchener–Waterloo
+- [Gujarati Cultural Association – Golden Triangle](https://gca-phi.vercel.app/): cultural association serving Kitchener, Waterloo and Cambridge
 - [Hespeler Santa Claus Parade](https://hespeler-santa-claus-parade.vercel.app/): community event in Cambridge, ON
+- [Shree Swaminarayan Gurukul](https://gurukul-kohl.vercel.app/): website redesign concept for the organization's US branches
+- [Krupa's Portfolio](https://krupadave-portfolio.vercel.app/): student portfolio, Waterloo, ON
 - [Expressive Unicorns](https://tanish-dave-websites.vercel.app/demos/unicorn/index.html): face and body painting with event booking
 - [Soapy Bubbles Laundromat](https://tanish-dave-websites.vercel.app/demos/soapy/index.html): laundromat and dry cleaning in Hamilton, ON
-- [The Indian Supermarket](https://tanish-dave-websites.vercel.app/demos/indian-supermarket/index.html): South Asian grocery chain in Kitchener, Guelph and Ottawa
+- [The Indian Supermarket](https://the-indian-supermarket.vercel.app/): South Asian grocery chain in Kitchener, Guelph and Ottawa
 - [Zain Al Haj Ali](https://zain-soccer-portfolio.vercel.app/): youth soccer player portfolio, Kitchener
 - [KT Resells](https://kt-resells.vercel.app/): online streetwear shop
 - [ES Elite Suppliez](https://es-elite-suppliez.vercel.app/): online streetwear shop

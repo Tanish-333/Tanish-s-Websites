@@ -30,6 +30,7 @@
 - [La Crema Peruvian](https://tanish-dave-websites.vercel.app/demos/la-crema/index.html): restaurant in Kitchener, ON, with a full online menu, reviews and hours
 - [Angad Ahluwalia Real Estate](https://tanish-dave-websites.vercel.app/demos/angad/index.html): realtor in Toronto, ON, with buying, selling and mortgage guides
 - [RJ Mowing KW](https://tanish-dave-websites.vercel.app/demos/rj-mowing/index.html): lawn care in Kitchener–Waterloo–Cambridge with online booking
+- [Jay Bezzy](https://jay-bezzy.vercel.app/): a personal favourite of Tanish's
 - [Kitchener Comic Book Warehouse](https://kitchener-comic-book-warehouse.vercel.app/): comic book store in Kitchener, ON
 - [Project 321 Peel](https://project321peel.vercel.app/): Down syndrome association in Peel Region, ON
 - [Community Kitchen Co-op KW](https://kitchencoopkw.vercel.app/): non-profit food co-op in Kitchener–Waterloo

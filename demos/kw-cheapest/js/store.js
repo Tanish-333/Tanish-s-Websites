@@ -6,15 +6,25 @@
  * that store is connected to the project, every device reads and writes
  * the same data. See README.md "Cloud sync setup" for the exact steps.
  *
- * If /api/products isn't reachable (no Storage connected yet, or running
- * the site locally with a plain static server), KWStore falls back to
- * localStorage so the app still works, just without cross-device sync.
+ * Reading: if /api/products isn't reachable, the storefront shows the last
+ * copy cached in this browser.
+ *
+ * Writing (admin only): the server checks the admin login (see lib/auth.js;
+ * the password is never in this file). A write that fails throws an Error
+ * with a readable message instead of saving to this device only.
  */
 const KWStore = (function () {
   const PRODUCTS_KEY = 'kwcheapest_products_v1';
-  const ADMIN_SESSION_KEY = 'kwcheapest_admin_session_v1';
-  const ADMIN_PASSWORD = 'Kareem_123';
   const CATEGORIES = ['Clothes', 'Accessories'];
+  const STATUSES = ['available', 'reserved', 'sold_out'];
+  const STATUS_LABEL = { available: 'Available', reserved: 'Reserved', sold_out: 'Sold Out' };
+  const CONDITIONS = ['New / Deadstock', 'Like New', 'Good', 'Fair'];
+  // Designer names shown in the homepage banner and suggested in the admin
+  // "Designer" field. Edit freely; this is just a list of names.
+  const DESIGNERS = [
+    'Essentials', 'Sp5der', 'Chrome Hearts', 'Stüssy', 'Corteiz', 'Trapstar', 'Nike', 'Jordan',
+    'Supreme', 'Off-White', 'Moncler', 'Stone Island', 'Palace', 'Gallery Dept', 'Hellstar', 'Denim Tears',
+  ];
   const API_BASE = '/api/products';
 
   const CONTACT = {
@@ -64,40 +74,9 @@ const KWStore = (function () {
     }
   }
 
-  function localAddProduct(data) {
-    const product = {
-      id: 'p_' + Date.now() + '_' + Math.random().toString(36).slice(2, 7),
-      createdAt: Date.now(),
-      status: 'available',
-      ...data,
-    };
-    const products = localGetProducts();
-    products.unshift(product);
-    localSaveProducts(products);
-    return product;
-  }
-
-  function localUpdateProduct(id, updates) {
-    const products = localGetProducts();
-    const idx = products.findIndex((p) => p.id === id);
-    if (idx === -1) return null;
-    products[idx] = { ...products[idx], ...updates };
-    localSaveProducts(products);
-    return products[idx];
-  }
-
-  function localDeleteProduct(id) {
-    localSaveProducts(localGetProducts().filter((p) => p.id !== id));
-  }
-
-  function localToggleSoldOut(id) {
-    const products = localGetProducts();
-    const product = products.find((p) => p.id === id);
-    if (!product) return null;
-    product.status = product.status === 'sold_out' ? 'available' : 'sold_out';
-    localSaveProducts(products);
-    return product;
-  }
+  try {
+    localStorage.removeItem('kwcheapest_admin_session_v1');
+  } catch (e) {}
 
   // --- Cloud API (falls back to local on any network/route failure, and
   // times out fast so a slow or unreachable API can't hang the page) ---
@@ -166,57 +145,80 @@ const KWStore = (function () {
     return localGetProducts();
   }
 
+  // Writes report failure loudly. err.status is the HTTP status (401 = the
+  // admin login expired or is missing), or 0 when the server was unreachable.
+  async function write(url, options) {
+    let res;
+    try {
+      res = await fetchWithTimeout(url, { credentials: 'same-origin', ...options }, 10000);
+    } catch (e) {
+      throw Object.assign(new Error(e.name === 'AbortError' ? 'The server took too long to answer.' : 'Could not reach the server.'), { status: 0 });
+    }
+    if (res.status === 204) return null;
+    let body = null;
+    try {
+      body = await res.json();
+    } catch (e) {
+      /* no JSON body */
+    }
+    if (!res.ok) {
+      const msg = (body && (body.error || body.detail)) || `Server responded ${res.status}`;
+      throw Object.assign(new Error(msg), { status: res.status });
+    }
+    return body;
+  }
+
+  const json = (method, data) => ({ method, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
+
   async function addProduct(data) {
-    const { ok, data: product } = await apiRequest(API_BASE, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data),
-    });
-    if (ok) return product;
-    return localAddProduct(data);
+    return write(API_BASE, json('POST', data));
   }
 
   async function updateProduct(id, updates) {
-    const { ok, data: product } = await apiRequest(`${API_BASE}/${id}`, {
-      method: 'PATCH',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(updates),
-    });
-    if (ok) return product;
-    return localUpdateProduct(id, updates);
+    return write(`${API_BASE}/${encodeURIComponent(id)}`, json('PATCH', updates));
   }
 
   async function deleteProduct(id) {
-    const { ok } = await apiRequest(`${API_BASE}/${id}`, { method: 'DELETE' });
-    if (ok) return;
-    localDeleteProduct(id);
+    await write(`${API_BASE}/${encodeURIComponent(id)}`, { method: 'DELETE' });
   }
 
-  async function toggleSoldOut(id) {
-    const { ok, data: products } = await apiRequest(API_BASE);
-    if (ok) {
-      const product = products.find((p) => p.id === id);
-      if (!product) return null;
-      const nextStatus = product.status === 'sold_out' ? 'available' : 'sold_out';
-      return await updateProduct(id, { status: nextStatus });
+  // --- admin login (checked by the server, see lib/auth.js) ---
+
+  // { authenticated: bool, unavailable: bool }
+  async function checkSession() {
+    try {
+      const res = await fetchWithTimeout('/api/session', { credentials: 'same-origin', cache: 'no-store' }, TIMEOUT_MS);
+      const body = await res.json();
+      return { authenticated: Boolean(body.authenticated), unavailable: false };
+    } catch (e) {
+      return { authenticated: false, unavailable: true };
     }
-    return localToggleSoldOut(id);
   }
 
-  function isAdminLoggedIn() {
-    return localStorage.getItem(ADMIN_SESSION_KEY) === 'true';
-  }
-
-  function login(password) {
-    if (password === ADMIN_PASSWORD) {
-      localStorage.setItem(ADMIN_SESSION_KEY, 'true');
-      return true;
+  // { ok: true } or { ok: false, error }
+  async function login(password) {
+    try {
+      const res = await fetchWithTimeout('/api/login', { credentials: 'same-origin', ...json('POST', { password }) }, 10000);
+      let body = {};
+      try {
+        body = await res.json();
+      } catch (e) {
+        /* not JSON: the login API isn't deployed here */
+      }
+      if (res.ok && body.ok) return { ok: true };
+      if (res.status === 404 || !body.error) return { ok: false, error: 'Login server not found. The admin only works on the deployed site.' };
+      return { ok: false, error: body.error };
+    } catch (e) {
+      return { ok: false, error: 'Could not reach the server. Check your connection.' };
     }
-    return false;
   }
 
-  function logout() {
-    localStorage.removeItem(ADMIN_SESSION_KEY);
+  async function logout() {
+    try {
+      await fetchWithTimeout('/api/logout', { credentials: 'same-origin', method: 'POST' }, TIMEOUT_MS);
+    } catch (e) {
+      /* the cookie expires on its own */
+    }
   }
 
   function escapeHtml(str) {
@@ -229,6 +231,16 @@ const KWStore = (function () {
     }[c]));
   }
 
+  // Every photo of a product: the main image plus any extra gallery URLs.
+  function productImages(p) {
+    const list = [p.image, ...(Array.isArray(p.gallery) ? p.gallery : [])];
+    return list.map((u) => String(u || '').trim()).filter(Boolean);
+  }
+
+  function statusOf(p) {
+    return STATUSES.includes(p.status) ? p.status : 'available';
+  }
+
   function formatPrice(n) {
     const num = Number(n) || 0;
     return '$' + num.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
@@ -236,15 +248,20 @@ const KWStore = (function () {
 
   return {
     CATEGORIES,
+    STATUSES,
+    STATUS_LABEL,
+    CONDITIONS,
+    DESIGNERS,
     CONTACT,
+    productImages,
+    statusOf,
     getCachedProducts,
     getSyncStatus,
     getProducts,
     addProduct,
     updateProduct,
     deleteProduct,
-    toggleSoldOut,
-    isAdminLoggedIn,
+    checkSession,
     login,
     logout,
     escapeHtml,

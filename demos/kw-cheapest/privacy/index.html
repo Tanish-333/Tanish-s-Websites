@@ -3,109 +3,159 @@
 <head>
   <meta charset="UTF-8" />
   <script>try{if(localStorage.getItem('kwcheapest_theme')==='light')document.documentElement.classList.add('light-theme');}catch(e){}</script>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Privacy Policy | KW's Cheapest</title>
   <meta name="description" content="Privacy Policy for KW's Cheapest: what we collect, how we use it, and how to reach us." />
-  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
-  <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png" />
-  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <meta name="theme-color" content="#090909" />
+  <link rel="canonical" href="https://kws-cheapest.vercel.app/privacy/" />
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="../icon-512.png" />
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Orbitron:wght@500;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/tailwind.css" />
-  <link rel="stylesheet" href="css/styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/site.css" />
+  <script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};</script>
 </head>
-<body class="bg-zinc-950 text-zinc-200 min-h-screen flex flex-col">
-  <div class="cosmic-backdrop"></div>
-  <div class="grain-overlay"></div>
-  <div class="scanlines"></div>
-  <div class="vignette"></div>
+<body>
+  <a class="skip" href="../#main">Skip to content</a>
 
-  <!-- Header -->
-  <header class="sticky top-0 z-30 bg-zinc-950/85 backdrop-blur border-b border-zinc-800/60">
-    <div class="max-w-3xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between relative z-10">
-      <a href="/" class="flex items-center gap-3 group">
-        <span class="relative inline-flex w-[34px] h-[34px] items-center justify-center shrink-0">
-          <span class="orbit-ring"></span>
-          <svg width="34" height="34" viewBox="0 0 64 64" class="group-hover:scale-105 transition">
-            <defs>
-              <linearGradient id="lg1" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="#ffffff"/><stop offset="100%" stop-color="#71717a"/>
-              </linearGradient>
-            </defs>
-            <rect width="64" height="64" rx="14" fill="#0a0a0c"/>
-            <polygon points="32,6 54,18 54,46 32,58 10,46 10,18" fill="none" stroke="url(#lg1)" stroke-width="3.5"/>
-            <text x="32" y="40" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="800" letter-spacing="-1" fill="#f4f4f5" text-anchor="middle">KW</text>
-          </svg>
-        </span>
-        <span class="font-display font-bold text-lg sm:text-xl tracking-widest text-zinc-50">
-          KW'S <span class="text-brand-500">CHEAPEST</span>
-        </span>
+  <div id="announce" class="announce">
+    <div class="announce__inner"><span>New drops every week. First to message gets it.</span></div>
+    <button id="announce-close" class="announce__close" aria-label="Dismiss announcement"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+  </div>
+
+  <header class="site-header" id="site-header">
+    <div class="wrap site-header__row">
+      <a href="../" class="brand" aria-label="KW's Cheapest home">
+        <svg viewBox="0 0 64 64" aria-hidden="true">
+          <defs><linearGradient id="lg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ffffff"/><stop offset="100%" stop-color="#71717a"/></linearGradient></defs>
+          <rect width="64" height="64" rx="14" fill="#0a0a0c"/>
+          <polygon points="32,6 54,18 54,46 32,58 10,46 10,18" fill="none" stroke="url(#lg1)" stroke-width="3.5"/>
+          <text x="32" y="40" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="800" letter-spacing="-1" fill="#f4f4f5" text-anchor="middle">KW</text>
+        </svg>
+        <span>KW'S <b>CHEAPEST</b></span>
       </a>
-      <div class="flex items-center gap-3">
-        <button id="theme-toggle" type="button" aria-label="Toggle light/dark theme"
-          class="flex items-center justify-center w-7 h-7 rounded-sm border border-zinc-800 text-zinc-400 hover:text-brand-500 hover:border-brand-600/60 transition">
-          <svg id="theme-icon-moon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-          <svg id="theme-icon-sun" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+      <nav class="nav" aria-label="Main">
+        <a href="../#shop">Shop</a>
+        <a href="../#prices">Under $</a>
+        <a href="../#shipping">Shipping</a>
+        <a href="../#faq">FAQ</a>
+      </nav>
+      <div class="header-actions">
+        <a href="../#shop" class="icon-btn" id="search-jump" aria-label="Search the drop"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></a>
+        <button id="theme-toggle" type="button" class="icon-btn" aria-label="Toggle light/dark theme">
+          <svg id="theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg id="theme-icon-sun" class="hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
         </button>
-        <a href="/" class="font-mono text-xs text-zinc-500 hover:text-brand-500 transition font-medium">&larr; BACK TO SITE</a>
+        <button id="menu-open" class="icon-btn menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="drawer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
       </div>
     </div>
   </header>
+  <div class="drawer-scrim" id="drawer-scrim"></div>
+  <aside class="drawer" id="drawer" aria-label="Menu" aria-hidden="true">
+    <div class="drawer__head">
+      <span class="brand">KW'S <b>CHEAPEST</b></span>
+      <button id="menu-close" class="icon-btn" aria-label="Close menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+    </div>
+    <nav class="drawer__nav">
+      <a href="../#shop">Shop</a><a href="../#prices">Shop by price</a><a href="../#shipping">Shipping</a><a href="../#faq">FAQ</a>
+    </nav>
+    <div class="drawer__foot"><a href="../#shop" class="btn btn--primary btn--block">Shop the drop</a></div>
+  </aside>
 
-  <!-- Content -->
-  <main class="max-w-3xl mx-auto px-4 sm:px-6 py-14 w-full flex-1 relative z-10">
-    <p class="font-mono text-xs font-semibold tracking-widest text-brand-400 uppercase">// Legal</p>
-    <h1 class="font-display mt-2 text-3xl sm:text-4xl font-bold text-zinc-50">Privacy Policy</h1>
-    <p class="font-mono text-xs text-zinc-500 mt-2">LAST UPDATED: 2026-09-18</p>
+  <main id="main">
+    <section class="page-intro">
+      <div class="wrap">
+        <span class="eyebrow">Legal</span>
+        <h1>Privacy Policy</h1>
+        <p>Last updated: 2026-11-03</p>
+      </div>
+    </section>
+    <div class="wrap">
+      <div class="prose">
 
-    <div class="mt-10 space-y-8 text-sm sm:text-base text-zinc-300 leading-relaxed">
       <section>
-        <h2 class="font-display font-bold text-zinc-50 text-lg mb-2"><span class="font-mono text-zinc-500 text-sm mr-2">§01</span>Information We Collect</h2>
-        <p>When you reach out about a listing (by phone, text, Snapchat, TikTok, or the contact form), we may receive your name, email address, phone number, and whatever message you send us.</p>
+        <h2><span>§01</span>Information We Collect</h2>
+        <p>When you reach out about a listing (by call, text, Snapchat, or TikTok), we may receive your name, email address, phone number, and whatever message you send us.</p>
       </section>
 
       <section>
-        <h2 class="font-display font-bold text-zinc-50 text-lg mb-2"><span class="font-mono text-zinc-500 text-sm mr-2">§02</span>How We Use It</h2>
+        <h2><span>§02</span>How We Use It</h2>
         <p>We use this information only to respond to your inquiry and to arrange payment, shipping, or local pickup for a purchase. We don't sell, rent, or share your information with third parties.</p>
       </section>
 
       <section>
-        <h2 class="font-display font-bold text-zinc-50 text-lg mb-2"><span class="font-mono text-zinc-500 text-sm mr-2">§03</span>Local Storage</h2>
-        <p>This site uses your browser's local storage to operate, for example to hold the product catalog and keep an admin session signed in. We don't use tracking cookies or analytics.</p>
+        <h2><span>§03</span>Local Storage &amp; Cookies</h2>
+        <p>This site keeps a copy of the product catalog and your light/dark theme choice in your browser's local storage so pages load fast. The only cookie we set is a login cookie for the store admin, and only when the admin logs in. We don't use advertising or tracking cookies.</p>
       </section>
 
       <section>
-        <h2 class="font-display font-bold text-zinc-50 text-lg mb-2"><span class="font-mono text-zinc-500 text-sm mr-2">§04</span>Third-Party Platforms</h2>
+        <h2><span>§04</span>Analytics</h2>
+        <p>We use Vercel Web Analytics to count visits and see which pages and items people look at. It doesn't use cookies, doesn't track you across other websites, and doesn't tell us who you are. It collects anonymous data such as the page visited, the referring site, your country, and your browser and device type. Vercel, our hosting provider, processes this data for us.</p>
+      </section>
+
+      <section>
+        <h2><span>§05</span>Third-Party Platforms</h2>
         <p>Links to Snapchat and TikTok take you to third-party platforms with their own privacy policies, which we don't control.</p>
       </section>
 
       <section>
-        <h2 class="font-display font-bold text-zinc-50 text-lg mb-2"><span class="font-mono text-zinc-500 text-sm mr-2">§05</span>Changes to This Policy</h2>
+        <h2><span>§06</span>Changes to This Policy</h2>
         <p>We may update this policy from time to time. Check back here for the latest version.</p>
       </section>
 
       <section>
-        <h2 class="font-display font-bold text-zinc-50 text-lg mb-2"><span class="font-mono text-zinc-500 text-sm mr-2">§06</span>Contact</h2>
-        <p>Questions about your data? Reach out through the call/text, Snapchat, or TikTok links on any <a href="/" class="text-brand-400 hover:text-brand-300 underline">listing</a>.</p>
+        <h2><span>§07</span>Contact</h2>
+        <p>Questions about your data? Reach out through the call/text, Snapchat, or TikTok links on any <a href="../">listing</a>.</p>
       </section>
+      </div>
     </div>
   </main>
 
-  <footer class="relative z-10 bg-zinc-950">
-    <div class="hud-rule"></div>
-    <div class="max-w-3xl mx-auto px-4 sm:px-6 py-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-sm text-zinc-500">
-      <span>© <span id="year"></span> KW's Cheapest.</span>
-      <div class="flex items-center gap-4 font-mono text-xs tracking-wide">
-        <a href="terms/" class="hover:text-brand-500 transition">TERMS</a>
-        <a href="/" class="hover:text-brand-500 transition">HOME</a>
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer__grid">
+        <div class="footer__about">
+          <a href="../" class="brand"><span>KW'S <b>CHEAPEST</b></span></a>
+          <p>Kitchener-Waterloo streetwear resale. Designer fits and accessories at the lowest prices, first come first served.</p>
+        </div>
+        <div class="footer__col">
+          <h4>Shop</h4>
+          <ul>
+            <li><a href="../#shop">All items</a></li>
+            <li><a href="../#shop">Clothes</a></li>
+            <li><a href="../#shop">Accessories</a></li>
+            <li><a href="../#prices">Shop by price</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Help</h4>
+          <ul>
+            <li><a href="../#shipping">Shipping &amp; pickup</a></li>
+            <li><a href="../#faq">FAQ</a></li>
+            <li><a id="footer-text" href="../#faq">Text us</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="../terms/">Terms</a></li>
+            <li><a href="../privacy/">Privacy</a></li>
+            <li><a href="../admin/">Admin</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__legal">
+        <p>&copy; <span id="year"></span> KW's Cheapest. All sales final, no refunds or exchanges.</p>
+        <p>Brand names are used only to describe items. No affiliation with or endorsement by any brand is implied.</p>
       </div>
     </div>
   </footer>
 
-  <script src="js/starfield.js"></script>
-  <script src="js/theme.js"></script>
-  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  <script src="../js/theme.js"></script>
+  <script src="../js/store.js"></script>
+  <script src="../js/legal.js"></script>
 </body>
 </html>

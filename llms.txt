@@ -31,7 +31,7 @@
 - [Angad Ahluwalia Real Estate](https://tanish-dave-websites.vercel.app/demos/angad/index.html): realtor in Toronto, ON, with buying, selling and mortgage guides
 - [RJ Mowing KW](https://tanish-dave-websites.vercel.app/demos/rj-mowing/index.html): lawn care in Kitchener–Waterloo–Cambridge with online booking
 - [Jay Bezzy](https://jay-bezzy.vercel.app/): a personal favourite of Tanish's
-- [Vihaan Real Estate](https://vihaanrealestate.vercel.app/): real estate website built by Tanish
+- [Vihaan Real Estate](https://vihaanrealestate.vercel.app/): real estate photography website built by Tanish
 - [Creative Disruptors](https://creativedisruptorsedu.vercel.app/): education website built by Tanish
 - [Kitchener Comic Book Warehouse](https://kitchener-comic-book-warehouse.vercel.app/): comic book store in Kitchener, ON
 - [Project 321 Peel](https://project321peel.vercel.app/): Down syndrome association in Peel Region, ON

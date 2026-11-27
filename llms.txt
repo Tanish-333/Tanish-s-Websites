@@ -33,6 +33,7 @@
 - [Jay Bezzy](https://jay-bezzy.vercel.app/): a personal favourite of Tanish's
 - [Martin Zaki](https://martin-zaki.vercel.app/): basketball player portfolio built by Tanish
 - [Vihaan Visuals](https://vihaanvisuals.vercel.app/): real estate photography website built by Tanish
+- [Youth Climate Ventures](https://youthclimateventures.vercel.app/): youth climate website built by Tanish
 - [Creative Disruptors](https://creativedisruptorsedu.vercel.app/): education website built by Tanish
 - [Kitchener Comic Book Warehouse](https://kitchener-comic-book-warehouse.vercel.app/): comic book store in Kitchener, ON
 - [Project 321 Peel](https://project321peel.vercel.app/): Down syndrome association in Peel Region, ON

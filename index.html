@@ -36,7 +36,6 @@
 <link rel="icon" href="assets/icon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="manifest" href="site.webmanifest">
-<link rel="preload" as="image" href="assets/shots/unicorn.webp" fetchpriority="high">
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
@@ -543,6 +542,18 @@
        "@id": "https://tanish-dave-websites.vercel.app/#tanish"
       }
      }
+    },
+    {
+     "@type": "ListItem",
+     "position": 22,
+     "item": {
+      "@type": "CreativeWork",
+      "name": "Youth Climate Ventures",
+      "url": "https://youthclimateventures.vercel.app/",
+      "creator": {
+       "@id": "https://tanish-dave-websites.vercel.app/#tanish"
+      }
+     }
     }
    ]
   },
@@ -809,6 +820,36 @@ footer nav{all:unset;display:flex;gap:20px;flex-wrap:wrap}
 .js .reveal{opacity:0;transform:translateY(24px);transition:opacity .8s,transform .8s var(--ease)}
 .js .reveal.in{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.js .reveal{opacity:1;transform:none;transition:none}.float,.pill b{animation:none}}
+
+/* layout tweaks: examples first, tighter spacing */
+section{padding:clamp(40px,6vw,80px) 0}
+.hero{padding:clamp(32px,5vw,64px) 0 clamp(8px,2vw,24px)}
+.hero .wrap{display:block}
+.hero h1{max-width:14ch}
+.hero .lede{max-width:46ch;margin-top:18px}
+.hero .cta{margin-top:24px}
+.head{margin-bottom:clamp(24px,3vw,36px)}
+h2{font-size:clamp(34px,4.4vw,56px)}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.card{display:block;text-decoration:none;background:var(--paper);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;transition:transform .35s var(--ease),box-shadow .35s}
+.card:hover{transform:translateY(-4px);box-shadow:0 24px 44px -26px rgba(30,25,15,.4)}
+.card .shot{display:block;aspect-ratio:8/5;overflow:hidden;background:#eee}
+.card .shot img{width:100%;height:100%;object-fit:cover;display:block}
+.card .cap{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px}
+.card .cap>span{min-width:0}
+.card h3{font:500 16px/1.3 var(--sans);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.card small{display:block;font-size:13px;color:var(--dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.card .cap i{width:32px;height:32px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;flex:none;transition:background .25s,color .25s,border-color .25s}
+.card .cap svg{width:14px;height:14px}
+.card:hover .cap i{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.tight{padding:0 0 clamp(40px,6vw,72px)}
+.chips2{display:flex;flex-wrap:wrap;gap:8px}
+.chips2 a{font-size:14px;color:var(--ink);text-decoration:none;border:1px solid var(--line);background:rgba(255,255,255,.55);border-radius:99px;padding:8px 14px;transition:background .25s,color .25s,border-color .25s}
+.chips2 a span{color:var(--dim)}
+.chips2 a:hover{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.chips2 a:hover span{color:var(--bg)}
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}}
+@media(max-width:520px){.grid{gap:10px}.card .cap{padding:10px 12px}.card .cap i{display:none}.card h3{font-size:14px}.card small{font-size:12px}}
 </style>
 <script>document.documentElement.classList.add("js")</script>
 </head>
@@ -817,8 +858,8 @@ footer nav{all:unset;display:flex;gap:20px;flex-wrap:wrap}
 <nav id="nav"><div class="wrap">
   <a href="#top" class="logo" aria-label="Tanish, home">Tanish<i></i></a>
   <ul class="links">
-    <li><a href="#services">Services</a></li>
     <li><a href="#work">Work</a></li>
+    <li><a href="#services">Services</a></li>
     <li><a href="#process">Process</a></li>
     <li><a href="#faq">FAQ</a></li>
     <li><a class="btn fill" href="#contact">Get a website</a></li>
@@ -826,30 +867,37 @@ footer nav{all:unset;display:flex;gap:20px;flex-wrap:wrap}
 </div></nav>
 
 <header class="hero" id="top"><div class="wrap">
-  <div>
-    <div class="pill"><b></b>Web designer · Kitchener–Waterloo, Ontario</div>
-    <h1>Your business deserves a <em>great</em> website.</h1>
-    <p class="lede">I design and build custom websites for local businesses in Kitchener, Waterloo, Cambridge and across Ontario — restaurants, shops, trades, realtors and non-profits. Fast, mobile-friendly, easy to find on Google, and built to turn visitors into customers.</p>
-    <div class="cta">
-      <a class="btn fill" href="#contact">Start your website <span class="ar">→</span></a>
-      <a class="btn ghost" href="#work">See examples</a>
-    </div>
-    <div class="proof">
-      <div><strong>15+</strong>websites launched</div>
-      <div><strong>100%</strong>custom, no templates</div>
-      <div><strong>KW</strong>local &amp; easy to reach</div>
-    </div>
-  </div>
-  <div class="pair" aria-hidden="true">
-    <div class="win float"><div class="bar"><i></i><i></i><i></i><span>Expressive Unicorns</span></div><img src="assets/shots/unicorn.webp" alt="" width="1280" height="800" fetchpriority="high"></div>
-    <div class="phone float d2"><img src="assets/shots/la-crema-mobile.webp" alt="" width="390" height="844"></div>
+  <div class="pill"><b></b>Web designer · Kitchener–Waterloo, Ontario</div>
+  <h1>Websites that bring in <em>customers.</em></h1>
+  <p class="lede">Custom, fast, mobile-friendly sites for local businesses. Here's some of my work.</p>
+  <div class="cta">
+    <a class="btn fill" href="#contact">Get a website <span class="ar">→</span></a>
+    <a class="btn ghost" href="#services">What I offer</a>
   </div>
 </div></header>
 
+<section id="work"><div class="wrap">
+  <div class="head">
+    <div><div class="label">Recent work</div><h2>Sites I've <em>built.</em></h2></div>
+    <p>Tap any card to open the live site.</p>
+  </div>
+  <div class="grid">
+    <a class="card" href="demos/la-crema/index.html" target="_blank" rel="noopener"><span class="shot"><img src="assets/shots/la-crema-thumb.webp" alt="La Crema Peruvian Restaurant website" width="480" height="300" decoding="async"></span><span class="cap"><span><h3>La Crema Peruvian</h3><small>Restaurant · Kitchener, ON</small></span><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></span></a>
+    <a class="card" href="demos/angad/index.html" target="_blank" rel="noopener"><span class="shot"><img src="assets/shots/angad-thumb.webp" alt="Angad Ahluwalia real estate website" width="480" height="300" decoding="async"></span><span class="cap"><span><h3>Angad Ahluwalia</h3><small>Real estate · Toronto, ON</small></span><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></span></a>
+    <a class="card" href="demos/rj-mowing/index.html" target="_blank" rel="noopener"><span class="shot"><img src="assets/shots/rj-mowing-thumb.webp" alt="RJ Mowing KW lawn care website" width="480" height="300" decoding="async"></span><span class="cap"><span><h3>RJ Mowing KW</h3><small>Lawn care · Kitchener–Waterloo</small></span><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></span></a>
+    <a class="card" href="https://project321peel.vercel.app/" target="_blank" rel="noopener"><span class="shot"><img src="assets/shots/project321-thumb.webp" alt="Project 321 Peel website" width="480" height="300" loading="lazy" decoding="async"></span><span class="cap"><span><h3>Project 321 Peel</h3><small>Non-profit · Peel Region, ON</small></span><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></span></a>
+    <a class="card" href="https://the-indian-supermarket.vercel.app/" target="_blank" rel="noopener"><span class="shot"><img src="assets/shots/indian-supermarket-thumb.webp" alt="The Indian Supermarket website" width="480" height="300" loading="lazy" decoding="async"></span><span class="cap"><span><h3>The Indian Supermarket</h3><small>Grocery chain · Kitchener, Guelph, Ottawa</small></span><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></span></a>
+    <a class="card" href="demos/soapy/index.html" target="_blank" rel="noopener"><span class="shot"><img src="assets/shots/soapy-thumb.webp" alt="Soapy Bubbles Laundromat website" width="480" height="300" loading="lazy" decoding="async"></span><span class="cap"><span><h3>Soapy Bubbles Laundromat</h3><small>Laundromat · Hamilton, ON</small></span><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></span></a>
+    <a class="card" href="demos/unicorn/index.html" target="_blank" rel="noopener"><span class="shot"><img src="assets/shots/unicorn-thumb.webp" alt="Expressive Unicorns website" width="480" height="300" loading="lazy" decoding="async"></span><span class="cap"><span><h3>Expressive Unicorns</h3><small>Face &amp; body painting · Ontario</small></span><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></span></a>
+    <a class="card" href="https://kt-resells.vercel.app/" target="_blank" rel="noopener"><span class="shot"><img src="assets/shots/kt-resells-thumb.webp" alt="KT Resells website" width="480" height="300" loading="lazy" decoding="async"></span><span class="cap"><span><h3>KT Resells</h3><small>Streetwear shop · Online</small></span><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></span></a>
+    <a class="card" href="https://kitchener-comic-book-warehouse.vercel.app/" target="_blank" rel="noopener"><span class="shot"><img src="assets/shots/comic-thumb.webp" alt="Kitchener Comic Book Warehouse website" width="480" height="300" loading="lazy" decoding="async"></span><span class="cap"><span><h3>Kitchener Comic Book Warehouse</h3><small>Comic store · Kitchener, ON</small></span><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></span></a>
+  </div>
+</div></section>
+
 <section id="services"><div class="wrap">
   <div class="head reveal">
-    <div><div class="label">What I offer</div><h2>Everything your site needs, <em>handled.</em></h2></div>
-    <p>You run the business. I take care of the design, the build and getting it online — so customers can find you, trust you and get in touch.</p>
+    <div><div class="label">What I offer</div><h2>What you <em>get.</em></h2></div>
+    <p>Design, build and launch, all handled.</p>
   </div>
   <div class="svc">
     <article class="reveal"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></div><h3>Custom design</h3><p>A site designed around your brand and your customers — not a cookie-cutter template.</p></article>
@@ -859,82 +907,11 @@ footer nav{all:unset;display:flex;gap:20px;flex-wrap:wrap}
     <article class="reveal"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div><h3>Easy updates</h3><p>Simple admin tools to change menus, products, events and photos yourself.</p></article>
     <article class="reveal"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/></svg></div><h3>Redesigns</h3><p>Turn an outdated or clunky site into one you're proud to send people to.</p></article>
   </div>
-  <div class="extras reveal"><span>Also included:</span><span>Domain &amp; hosting setup</span><span>Google Maps &amp; hours</span><span>Social links</span><span>Contact forms</span><span>Ongoing support</span></div>
 </div></section>
 
-<section id="work"><div class="wrap">
-  <div class="head reveal">
-    <div><div class="label">Recent work</div><h2>A few sites I've <em>built.</em></h2></div>
-    <p>Click any project to open the real site in a new tab.</p>
-  </div>
-  <div class="feat">
-    <a class="case reveal" href="demos/la-crema/index.html" target="_blank" rel="noopener">
-      <div class="shot pair">
-        <div class="win"><div class="bar"><i></i><i></i><i></i><span>La Crema Peruvian Restaurant</span></div><img src="assets/shots/la-crema.webp" alt="La Crema Peruvian Restaurant website homepage" width="1280" height="800" loading="lazy"></div>
-        <div class="phone"><img src="assets/shots/la-crema-mobile.webp" alt="" width="390" height="844" loading="lazy"></div>
-      </div>
-      <div>
-        <div class="meta"><b>Restaurant</b>Kitchener, ON</div>
-        <h3>La Crema Peruvian</h3>
-        <p>A warm, appetite-first site for a family-run Peruvian restaurant that makes people want to come in and eat.</p>
-        <ul><li>Full online menu with photos</li><li>Reviews page and opening hours</li><li>One-tap call and directions</li></ul>
-        <span class="visit">Visit site <span>↗</span></span>
-      </div>
-    </a>
-    <a class="case reveal" href="demos/angad/index.html" target="_blank" rel="noopener">
-      <div class="shot pair">
-        <div class="win"><div class="bar"><i></i><i></i><i></i><span>Angad Ahluwalia · Real Estate</span></div><img src="assets/shots/angad.webp" alt="Angad Ahluwalia real estate website homepage" width="1280" height="800" loading="lazy"></div>
-        <div class="phone"><img src="assets/shots/angad-mobile.webp" alt="" width="390" height="844" loading="lazy"></div>
-      </div>
-      <div>
-        <div class="meta"><b>Real estate</b>Toronto, ON</div>
-        <h3>Angad Ahluwalia</h3>
-        <p>A premium personal-brand site for a realtor, built to build trust and turn visitors into leads.</p>
-        <ul><li>Buying, selling and mortgage guides</li><li>Blog for local market updates</li><li>Lead-focused contact page</li></ul>
-        <span class="visit">Visit site <span>↗</span></span>
-      </div>
-    </a>
-    <a class="case reveal" href="demos/rj-mowing/index.html" target="_blank" rel="noopener">
-      <div class="shot pair">
-        <div class="win"><div class="bar"><i></i><i></i><i></i><span>RJ Mowing KW</span></div><img src="assets/shots/rj-mowing.webp" alt="RJ Mowing KW lawn care website homepage" width="1280" height="800" loading="lazy"></div>
-        <div class="phone"><img src="assets/shots/rj-mowing-mobile.webp" alt="" width="390" height="844" loading="lazy"></div>
-      </div>
-      <div>
-        <div class="meta"><b>Lawn care</b>Kitchener–Waterloo–Cambridge</div>
-        <h3>RJ Mowing KW</h3>
-        <p>A clean, no-nonsense site for a local lawn care company, so customers can book without phone tag.</p>
-        <ul><li>Online booking form</li><li>Service and service-area pages</li><li>Trust signals up front: insured, local, on time</li></ul>
-        <span class="visit">Visit site <span>↗</span></span>
-      </div>
-    </a>
-  </div>
-</div></section>
-
-<section id="more"><div class="wrap">
-  <div class="head reveal">
-    <div><div class="label">More projects</div><h2>Every site, <em>one click away.</em></h2></div>
-    <p>Retail, community groups, events, portfolios and online shops. Each link opens the live site in a new tab.</p>
-  </div>
-  <div class="more reveal">
-    <a class="row" href="https://vihaanvisuals.vercel.app/" target="_blank" rel="noopener"><span class="thumb"><img src="assets/shots/vihaan-thumb.webp" alt="Vihaan Visuals website" width="480" height="300" loading="lazy" decoding="async"></span><div><h3>Vihaan Visuals</h3><small>Real estate photography website</small></div><span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
-    <a class="row" href="https://creativedisruptorsedu.vercel.app/" target="_blank" rel="noopener"><span class="thumb"><img src="assets/shots/creative-disruptors-thumb.webp" alt="Creative Disruptors website" width="480" height="300" loading="lazy" decoding="async"></span><div><h3>Creative Disruptors</h3><small>Education website</small></div><span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
-    <a class="row" href="https://martin-zaki.vercel.app/" target="_blank" rel="noopener"><span class="thumb"><img src="assets/shots/martin-zaki-thumb.webp" alt="Martin Zaki basketball portfolio website" width="480" height="300" loading="lazy" decoding="async"></span><div><h3>Martin Zaki</h3><small>Basketball player portfolio</small></div><span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
-    <a class="row" href="https://jay-bezzy.vercel.app/" target="_blank" rel="noopener"><span class="thumb"><img src="assets/shots/jay-bezzy-thumb.webp" alt="Jay Bezzy website homepage" width="480" height="300" loading="lazy" decoding="async"></span><div><h3>Jay Bezzy</h3><small>A personal favourite of mine</small></div><span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
-    <a class="row" href="https://kitchener-comic-book-warehouse.vercel.app/" target="_blank" rel="noopener"><span class="thumb"><img src="assets/shots/comic-thumb.webp" alt="Kitchener Comic Book Warehouse website homepage" width="480" height="300" loading="lazy" decoding="async"></span><div><h3>Kitchener Comic Book Warehouse</h3><small>Comic book store · Kitchener, ON</small></div><span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
-    <a class="row" href="https://project321peel.vercel.app/" target="_blank" rel="noopener"><span class="thumb"><img src="assets/shots/project321-thumb.webp" alt="Project 321 Peel website homepage" width="480" height="300" loading="lazy" decoding="async"></span><div><h3>Project 321 Peel</h3><small>Down syndrome association · Peel Region, ON</small></div><span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
-    <a class="row" href="https://kitchencoopkw.vercel.app/" target="_blank" rel="noopener"><span class="thumb"><img src="assets/shots/kitchencoop-thumb.webp" alt="Community Kitchen Co-op KW website homepage" width="480" height="300" loading="lazy" decoding="async"></span><div><h3>Community Kitchen Co-op KW</h3><small>Non-profit food co-op · Kitchener–Waterloo</small></div><span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
-    <a class="row" href="https://gca-phi.vercel.app/" target="_blank" rel="noopener"><span class="thumb"><img src="assets/shots/gca-thumb.webp" alt="Gujarati Cultural Association website homepage" width="480" height="300" loading="lazy" decoding="async"></span><div><h3>Gujarati Cultural Association</h3><small>Cultural association · Kitchener–Waterloo–Cambridge</small></div><span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
-    <a class="row" href="https://hespeler-santa-claus-parade.vercel.app/" target="_blank" rel="noopener"><span class="thumb"><img src="assets/shots/hespeler-thumb.webp" alt="Hespeler Santa Claus Parade website homepage" width="480" height="300" loading="lazy" decoding="async"></span><div><h3>Hespeler Santa Claus Parade</h3><small>Community event · Cambridge, ON</small></div><span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
-    <a class="row" href="https://gurukul-kohl.vercel.app/" target="_blank" rel="noopener"><span class="thumb"><img src="assets/shots/gurukul-thumb.webp" alt="Shree Swaminarayan Gurukul website homepage" width="480" height="300" loading="lazy" decoding="async"></span><div><h3>Shree Swaminarayan Gurukul</h3><small>Redesign concept · US branches</small></div><span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
-    <a class="row" href="demos/unicorn/index.html" target="_blank" rel="noopener"><span class="thumb"><img src="assets/shots/unicorn-thumb.webp" alt="Expressive Unicorns website homepage" width="480" height="300" loading="lazy" decoding="async"></span><div><h3>Expressive Unicorns</h3><small>Face &amp; body painting · Ontario</small></div><span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
-    <a class="row" href="demos/soapy/index.html" target="_blank" rel="noopener"><span class="thumb"><img src="assets/shots/soapy-thumb.webp" alt="Soapy Bubbles Laundromat website homepage" width="480" height="300" loading="lazy" decoding="async"></span><div><h3>Soapy Bubbles Laundromat</h3><small>Laundromat · Hamilton, ON</small></div><span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
-    <a class="row" href="https://the-indian-supermarket.vercel.app/" target="_blank" rel="noopener"><span class="thumb"><img src="assets/shots/indian-supermarket-thumb.webp" alt="The Indian Supermarket website homepage" width="480" height="300" loading="lazy" decoding="async"></span><div><h3>The Indian Supermarket</h3><small>Grocery chain · Kitchener, Guelph &amp; Ottawa</small></div><span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
-    <a class="row" href="https://zain-soccer-portfolio.vercel.app/" target="_blank" rel="noopener"><span class="thumb"><img src="assets/shots/zain-thumb.webp" alt="Zain Al Haj Ali website homepage" width="480" height="300" loading="lazy" decoding="async"></span><div><h3>Zain Al Haj Ali</h3><small>Soccer player portfolio · Kitchener, ON</small></div><span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
-    <a class="row" href="https://krupadave-portfolio.vercel.app/" target="_blank" rel="noopener"><span class="thumb"><img src="assets/shots/krupa-thumb.webp" alt="Krupa&#39;s Portfolio website homepage" width="480" height="300" loading="lazy" decoding="async"></span><div><h3>Krupa&#39;s Portfolio</h3><small>Student portfolio · Waterloo, ON</small></div><span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
-    <a class="row" href="https://kt-resells.vercel.app/" target="_blank" rel="noopener"><span class="thumb"><img src="assets/shots/kt-resells-thumb.webp" alt="KT Resells website homepage" width="480" height="300" loading="lazy" decoding="async"></span><div><h3>KT Resells</h3><small>Streetwear shop · Online</small></div><span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
-    <a class="row" href="https://es-elite-suppliez.vercel.app/" target="_blank" rel="noopener"><span class="thumb"><img src="assets/shots/es-elite-thumb.webp" alt="ES Elite Suppliez website homepage" width="480" height="300" loading="lazy" decoding="async"></span><div><h3>ES Elite Suppliez</h3><small>Streetwear shop · Online</small></div><span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
-    <a class="row" href="demos/kw-cheapest/index.html" target="_blank" rel="noopener"><span class="thumb"><img src="assets/shots/kw-cheapest-thumb.webp" alt="KW's Cheapest website homepage" width="480" height="300" loading="lazy" decoding="async"></span><div><h3>KW's Cheapest</h3><small>Streetwear resale · Kitchener–Waterloo</small></div><span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
-  </div>
+<section id="more" class="tight"><div class="wrap">
+  <div class="label">More projects</div>
+  <div class="chips2"><a href="https://gca-phi.vercel.app/" target="_blank" rel="noopener">Gujarati Cultural Association <span>↗</span></a><a href="https://gurukul-kohl.vercel.app/" target="_blank" rel="noopener">Shree Swaminarayan Gurukul <span>↗</span></a><a href="https://hespeler-santa-claus-parade.vercel.app/" target="_blank" rel="noopener">Hespeler Santa Claus Parade <span>↗</span></a><a href="https://kitchencoopkw.vercel.app/" target="_blank" rel="noopener">Community Kitchen Co-op KW <span>↗</span></a><a href="https://es-elite-suppliez.vercel.app/" target="_blank" rel="noopener">ES Elite Suppliez <span>↗</span></a><a href="demos/kw-cheapest/index.html" target="_blank" rel="noopener">KW's Cheapest <span>↗</span></a><a href="https://zain-soccer-portfolio.vercel.app/" target="_blank" rel="noopener">Zain Al Haj Ali <span>↗</span></a><a href="https://youthclimateventures.vercel.app/" target="_blank" rel="noopener">Youth Climate Ventures <span>↗</span></a><a href="https://vihaanvisuals.vercel.app/" target="_blank" rel="noopener">Vihaan Visuals <span>↗</span></a><a href="https://martin-zaki.vercel.app/" target="_blank" rel="noopener">Martin Zaki <span>↗</span></a><a href="https://creativedisruptorsedu.vercel.app/" target="_blank" rel="noopener">Creative Disruptors <span>↗</span></a><a href="https://jay-bezzy.vercel.app/" target="_blank" rel="noopener">Jay Bezzy <span>↗</span></a><a href="https://krupadave-portfolio.vercel.app/" target="_blank" rel="noopener">Krupa Dave <span>↗</span></a></div>
 </div></section>
 
 <section id="process"><div class="wrap">

@@ -32,15 +32,14 @@
 - [RJ Mowing KW](https://tanish-dave-websites.vercel.app/demos/rj-mowing/index.html): lawn care in Kitchener–Waterloo–Cambridge with online booking
 - [Jay Bezzy](https://jay-bezzy.vercel.app/): a personal favourite of Tanish's
 - [Martin Zaki](https://martin-zaki.vercel.app/): basketball player portfolio built by Tanish
-- [Vihaan Visuals](https://vihaanvisuals.vercel.app/): real estate photography website built by Tanish
+- [Quality Visuals](https://vihaanvisuals.vercel.app/): real estate photography website built by Tanish
 - [Youth Climate Ventures](https://youthclimateventures.vercel.app/): youth climate website built by Tanish
 - [Creative Disruptors](https://creativedisruptorsedu.vercel.app/): education website built by Tanish
 - [Kitchener Comic Book Warehouse](https://kitchener-comic-book-warehouse.vercel.app/): comic book store in Kitchener, ON
 - [Project 321 Peel](https://project321peel.vercel.app/): Down syndrome association in Peel Region, ON
 - [Community Kitchen Co-op KW](https://kitchencoopkw.vercel.app/): non-profit food co-op in Kitchener–Waterloo
-- [Gujarati Cultural Association – Golden Triangle](https://gca-phi.vercel.app/): cultural association serving Kitchener, Waterloo and Cambridge
+- [GCA – Gujarati Cultural Association Golden Triangle](https://gca-phi.vercel.app/): cultural association serving Kitchener, Waterloo and Cambridge
 - [Hespeler Santa Claus Parade](https://hespeler-santa-claus-parade.vercel.app/): community event in Cambridge, ON
-- [Shree Swaminarayan Gurukul](https://gurukul-kohl.vercel.app/): website redesign concept for the organization's US branches
 - [Krupa's Portfolio](https://krupadave-portfolio.vercel.app/): student portfolio, Waterloo, ON
 - [Expressive Unicorns](https://tanish-dave-websites.vercel.app/demos/unicorn/index.html): face and body painting with event booking
 - [Soapy Bubbles Laundromat](https://tanish-dave-websites.vercel.app/demos/soapy/index.html): laundromat and dry cleaning in Hamilton, ON
